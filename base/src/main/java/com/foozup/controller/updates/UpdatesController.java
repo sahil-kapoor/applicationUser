@@ -16,11 +16,11 @@ import com.foozup.model.User;
 import com.foozup.service.updates.UpdatesService;
 
 @RestController
-@RequestMapping(value="/update/")
+@RequestMapping(value="/updates/")
 public class UpdatesController {
 
 	@Autowired
-	UpdatesService ownerService;
+	UpdatesService updatesService;
 	
 	@RequestMapping(value = "{emailId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<User>> getUserBymailId(@PathVariable("emailId") long String) {

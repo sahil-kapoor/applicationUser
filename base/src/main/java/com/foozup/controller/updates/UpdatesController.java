@@ -1,4 +1,4 @@
-package com.foozup.controller.owner;
+package com.foozup.controller.updates;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.foozup.model.User;
-import com.foozup.service.owner.OwnerService;
+import com.foozup.service.updates.UpdatesService;
 
 @RestController
-@RequestMapping(value="/owner/")
-public class OwnerController {
+@RequestMapping(value="/update/")
+public class UpdatesController {
 
 	@Autowired
-	OwnerService ownerService;
+	UpdatesService ownerService;
 	
 	@RequestMapping(value = "{emailId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<User>> getUserBymailId(@PathVariable("emailId") long String) {

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.foozup.dao.city.CityDao;
-import com.foozup.model.User;
+import com.foozup.model.admin.User;
 import com.foozup.service.UserService;
 
 @RestController

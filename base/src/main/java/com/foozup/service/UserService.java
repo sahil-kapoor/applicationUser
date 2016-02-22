@@ -2,7 +2,7 @@ package com.foozup.service;
 
 import java.util.List;
 
-import com.foozup.model.User;
+import com.foozup.model.admin.User;
 
 
 

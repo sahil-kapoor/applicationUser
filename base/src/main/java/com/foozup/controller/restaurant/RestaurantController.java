@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.foozup.model.User;
+import com.foozup.model.admin.User;
 import com.foozup.service.restaurant.RestaurantService;
 
 @RestController

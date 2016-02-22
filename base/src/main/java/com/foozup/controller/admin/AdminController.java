@@ -1,5 +1,9 @@
 package com.foozup.controller.admin;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.foozup.dao.city.CityDaoImpl;
+import com.foozup.model.admin.Credentials;
+import com.foozup.model.response.UserLoginRepsonse;
 import com.foozup.service.admin.AdminService;
 
 @RestController
@@ -19,10 +26,13 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 	
+	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+	
 	@RequestMapping(value="login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> loginUser(@RequestBody ) {
-		
-		return new ResponseEntity<String>(String.valueOf(restId), HttpStatus.OK);
+	public ResponseEntity<UserLoginRepsonse> loginUser(@RequestBody Credentials credentials,HttpServletRequest httpServletRequest) {
+		logger.info("ip:"+httpServletRequest.getHeader("X-FORWARDED-FOR")+", userId:"+credentials.getUserId()+", method: login");
+		UserLoginRepsonse userLoginResponse=adminService.loginService(credentials);
+		return new ResponseEntity<UserLoginRepsonse>(userLoginResponse, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="link", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

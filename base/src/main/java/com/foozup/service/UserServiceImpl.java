@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.foozup.model.User;
+import com.foozup.model.admin.User;
 
 @Service("userService")
 @Transactional
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	public void saveUser(User user) {
-		user.setId(counter.incrementAndGet());
+	//	user.setId(counter.incrementAndGet());
 		users.add(user);
 	}
 
@@ -70,10 +70,6 @@ public class UserServiceImpl implements UserService{
 
 	private static List<User> populateDummyUsers(){
 		List<User> users = new ArrayList<User>();
-		users.add(new User(counter.incrementAndGet(),"Sam",30, 70000));
-		users.add(new User(counter.incrementAndGet(),"Tom",40, 50000));
-		users.add(new User(counter.incrementAndGet(),"Jerome",45, 30000));
-		users.add(new User(counter.incrementAndGet(),"Silvia",50, 40000));
 		return users;
 	}
 

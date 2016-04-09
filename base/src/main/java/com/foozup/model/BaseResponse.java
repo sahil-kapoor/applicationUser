@@ -1,9 +1,17 @@
 package com.foozup.model;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+@Configuration
+@PropertySource("classpath:applicationConstants.properties")
 public class BaseResponse {
 	private String message;
 	private Integer code;
 	private Object data;
+	
+	@Value("${apiVersion}")
 	private String apiVersion;
 	
 	public String getMessage() {
@@ -30,7 +38,5 @@ public class BaseResponse {
 	public void setApiVersion(String apiVersion) {
 		this.apiVersion = apiVersion;
 	}
-	
-	
 	
 }

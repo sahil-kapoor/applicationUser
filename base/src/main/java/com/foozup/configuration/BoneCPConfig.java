@@ -11,7 +11,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import com.jolbox.bonecp.BoneCPDataSource;
 
 @Configuration
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:dbConfig.properties")
 public class BoneCPConfig {
 
 	@Value("${bonecp.url}")

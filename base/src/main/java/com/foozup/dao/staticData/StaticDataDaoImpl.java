@@ -1,8 +1,8 @@
 package com.foozup.dao.staticData;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,14 +11,17 @@ import org.springframework.stereotype.Repository;
 
 import com.foozup.dao.AbstractDao;
 import com.foozup.dao.city.CityDaoImpl;
+import com.foozup.dao.staticData.rowMapper.CityRowMapper;
+import com.foozup.model.staticData.Area;
+import com.foozup.model.staticData.City;
 import com.foozup.model.staticData.Location;
 
-@Repository("staticDataDao")
+
 public class StaticDataDaoImpl implements StaticDataDao {
 
 	
 	private AbstractDao abstractDao; 
-	private static final Logger logger = LoggerFactory.getLogger(CityDaoImpl.class);;
+	private static final Logger logger = LoggerFactory.getLogger(StaticDataDaoImpl.class);;
 	 
 	public StaticDataDaoImpl(AbstractDao abstractDao) {
 		this.abstractDao=abstractDao;
@@ -37,20 +40,55 @@ public class StaticDataDaoImpl implements StaticDataDao {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="locationCache", key="#cityId")
-	public Location getAllAreaLocation(String cityId) {
+	public City getAllAreaLocation(String cityId) {
 	
 		
-		String query="SELECT c.id as cityId,c.name as cityName,c.lat cityLong,c.lon as cityLon, a.id as areaId ,"+ 
-		"a.name as areaName ,a.lat as areaLat,a.lon as areaLon,"+ 
-		"l.id as locationId, l.name as locationName, l.lat as locationLat, l.lon as locationLon"+
-		"FROM foozup_restaurant.cities c left join foozup_restaurant.areas a on c.id=a.city_id "+
-		"left join foozup_restaurant.locations l on a.id=l.area_id where c.id='"+cityId+"'";
-		logger.debug(query);
-		//List<Map> rows = abstractDao.getJdbcTemplate().queryFor(query);
 		
-		return null;
+		String cityQuery="SELECT c.id as cityId,c.name as cityName,c.lat cityLat,c.lon as cityLon FROM "+
+		"foozup_restaurant.cities c where c.id=? ";
+		City cityRow=(City)abstractDao.getJdbcTemplate().queryForObject(cityQuery, new Object[]{1},new CityRowMapper());
+		cityRow.setAreas(new HashMap<>());
+		
+		Map<Integer,Area> areaMap=new HashMap<>();
+		String areaQuery="select a.id as areaId ,a.name as areaName ,a.lat as areaLat,a.lon as areaLon "+
+		"FROM foozup_restaurant.areas a where a.city_id=?";
+		List<Map<String, Object>> areaRows=abstractDao.getJdbcTemplate().queryForList(areaQuery, cityId);
+		
+		
+		String locationQuery="Select l.id as locationId,l.area_id as areaId, l.name as locationName, l.lat as locationLat, l.lon as locationLon "+
+		"FROM foozup_restaurant.locations l where l.city_id=?";
+		List<Map<String, Object>> locationRows=abstractDao.getJdbcTemplate().queryForList(locationQuery, cityId);
+		
+		
+		for (Map row : areaRows) {
+			Area area = new Area();
+			area.setId(Integer.parseInt(String.valueOf(row.get("areaId"))));
+			area.setName((String)row.get("areaName"));
+			area.setLatitude((String)row.get("areaLat"));
+			area.setLongitude((String)row.get("areaLon"));
+			area.setCityId(Integer.parseInt(cityId));
+			area.setLocations(new HashMap<>());
+			for (Map locRow : locationRows) {
+			   	Location loc=new Location();
+			   	if(Integer.parseInt(String.valueOf(locRow.get("areaId")))==area.getId()){
+			   		loc.setAreaId(area.getId());
+			   		loc.setCityId(Integer.parseInt(cityId));
+			   		loc.setId(Integer.parseInt(String.valueOf(locRow.get("locationId"))));
+			   		loc.setLatitude((String)locRow.get("locationLat"));
+			   		loc.setLongitude((String)locRow.get("locationLon"));
+			   		loc.setName((String)locRow.get("locationName"));
+			   		area.getLocations().put(loc.getId(), loc);
+			    }
+			 cityRow.getAreas().put(area.getId(), area);   	
+		}
+			            
+     }
+
+		
+		return cityRow;
 	}
 
 	

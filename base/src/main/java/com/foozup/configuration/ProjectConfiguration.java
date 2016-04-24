@@ -14,6 +14,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.foozup.dao.AbstractDao;
 import com.foozup.dao.city.CityDao;
 import com.foozup.dao.city.CityDaoImpl;
+import com.foozup.dao.staticData.StaticDataDao;
+import com.foozup.dao.staticData.StaticDataDaoImpl;
 
 @Configuration
 @EnableWebMvc
@@ -34,6 +36,12 @@ public class ProjectConfiguration extends WebMvcConfigurerAdapter {
 		return new CityDaoImpl(getAbstractDao());
 	}
 
+	
+	@Bean
+	public StaticDataDao dataService() {
+		return new StaticDataDaoImpl(getAbstractDao());
+	}
+	
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {

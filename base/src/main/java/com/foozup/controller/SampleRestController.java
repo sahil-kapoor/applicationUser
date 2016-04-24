@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.foozup.dao.city.CityDao;
+import com.foozup.dao.staticData.StaticDataDao;
 import com.foozup.model.admin.User;
+import com.foozup.model.staticData.City;
 import com.foozup.service.UserService;
 
 @RestController
@@ -27,23 +29,26 @@ public class SampleRestController {
 
 	@Autowired
 	CityDao cityDaoImpl;
+	
+	@Autowired
+	StaticDataDao staticDataDaoImpl;
 	//-------------------Retrieve All Users--------------------------------------------------------
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<String> listAllUsers() {
+	public ResponseEntity<City> listAllUsers() {
 		List<User> users = userService.findAllUsers();
-		if(users.isEmpty()){
-			return new ResponseEntity<String>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
-		}
+		/*if(users.isEmpty()){
+			return new ResponseEntity<City>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+		}*/
 		 
-		cityDaoImpl.getNameById("1");
-		return new ResponseEntity<String>(cityDaoImpl.getNameById("1"), HttpStatus.OK);
+		staticDataDaoImpl.getAllAreaLocation("1");
+		return new ResponseEntity<City>(staticDataDaoImpl.getAllAreaLocation("1"), HttpStatus.OK);
 	}
 
 
 	//-------------------Retrieve Single User--------------------------------------------------------
 	
-	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	/*@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> getUser(@PathVariable("id") long id) {
 		System.out.println("Fetching User with id " + id);
 		User user = userService.findById(id);
@@ -53,7 +58,7 @@ public class SampleRestController {
 		}
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-
+*/
 	
 	
 	//-------------------Create a User--------------------------------------------------------

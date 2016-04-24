@@ -18,19 +18,9 @@ import com.foozup.dao.city.CityDaoImpl;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.foozup")
-@Import(SwaggerConfiguration.class)
+@Import({SwaggerConfiguration.class , EhChacheConfiguration.class})
 public class ProjectConfiguration extends WebMvcConfigurerAdapter {
 
-	/*@Bean
-	public DataSource getDataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/world");
-		dataSource.setUsername("root");
-		dataSource.setPassword("root");
-
-		return dataSource;
-	}*/
 	@Autowired
 	private DataSource dataSource;
 
@@ -44,6 +34,7 @@ public class ProjectConfiguration extends WebMvcConfigurerAdapter {
 		return new CityDaoImpl(getAbstractDao());
 	}
 
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");

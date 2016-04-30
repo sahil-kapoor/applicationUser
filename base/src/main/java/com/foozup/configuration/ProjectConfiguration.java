@@ -11,11 +11,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.foozup.city.dao.CityDao;
+import com.foozup.city.dao.CityDaoImpl;
 import com.foozup.dao.AbstractDao;
-import com.foozup.dao.city.CityDao;
-import com.foozup.dao.city.CityDaoImpl;
-import com.foozup.dao.staticData.StaticDataDao;
-import com.foozup.dao.staticData.StaticDataDaoImpl;
+import com.foozup.staticData.dao.StaticDataDao;
+import com.foozup.staticData.dao.StaticDataDaoImpl;
 
 @Configuration
 @EnableWebMvc

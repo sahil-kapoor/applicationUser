@@ -1,6 +1,10 @@
 package com.foozup.configuration;
 
+import javax.servlet.Filter;
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import com.foozup.common.IpFilter;
 
 public class ProjectInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
  
@@ -18,5 +22,10 @@ public class ProjectInitializer extends AbstractAnnotationConfigDispatcherServle
     protected String[] getServletMappings() {
         return new String[] { "/" };
     }
+    
+    @Override
+	protected Filter[] getServletFilters() {
+		return new Filter[]{new IpFilter()};
+	}
  
 }

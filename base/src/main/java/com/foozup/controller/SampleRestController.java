@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.foozup.dao.city.CityDao;
-import com.foozup.dao.staticData.StaticDataDao;
-import com.foozup.model.admin.User;
-import com.foozup.model.staticData.City;
-import com.foozup.service.UserService;
+import com.foozup.admin.model.User;
+import com.foozup.admin.service.UserService;
+import com.foozup.city.dao.CityDao;
+import com.foozup.staticData.dao.StaticDataDao;
+import com.foozup.staticData.model.City;
 
 @RestController
 @RequestMapping(value="/user/")

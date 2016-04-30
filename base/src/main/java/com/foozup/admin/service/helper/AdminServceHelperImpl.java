@@ -1,4 +1,4 @@
-package com.foozup.admin.helper;
+package com.foozup.admin.service.helper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

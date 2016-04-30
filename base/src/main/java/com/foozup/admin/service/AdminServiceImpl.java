@@ -5,10 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.foozup.admin.helper.AdminServiceHelper;
 import com.foozup.admin.model.Credentials;
 import com.foozup.admin.model.User;
 import com.foozup.admin.model.response.UserLoginRepsonse;
+import com.foozup.admin.service.helper.AdminServiceHelper;
 import com.foozup.common.Messages;
 
 @Service("adminService")

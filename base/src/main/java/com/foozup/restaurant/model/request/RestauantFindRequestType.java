@@ -2,7 +2,7 @@ package com.foozup.restaurant.model.request;
 
 import java.util.List;
 
-public class RestauantRequestType {
+public class RestauantFindRequestType {
 
 	private String userId;
 	private List<Integer> locationIds;

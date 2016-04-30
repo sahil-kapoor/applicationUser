@@ -1,4 +1,4 @@
-package com.foozup.admin.helper;
+package com.foozup.admin.service.helper;
 
 import com.foozup.admin.model.Credentials;
 import com.foozup.admin.model.User;

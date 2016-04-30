@@ -1,4 +1,4 @@
-package com.foozup.restaurant.model.sql;
+package com.foozup.restaurant.model;
 
 public class RestaurantInfo extends RestaurantBase {
 

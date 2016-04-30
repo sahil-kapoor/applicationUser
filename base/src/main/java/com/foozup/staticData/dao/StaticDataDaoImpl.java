@@ -7,9 +7,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Repository;
 
-import com.foozup.city.dao.CityDaoImpl;
 import com.foozup.dao.AbstractDao;
 import com.foozup.staticData.dao.rowMapper.CityRowMapper;
 import com.foozup.staticData.model.Area;

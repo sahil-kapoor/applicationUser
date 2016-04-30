@@ -1,29 +1,12 @@
-package com.foozup.controller;
+package com.foozup.controller.sample;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import com.foozup.admin.model.User;
-import com.foozup.admin.service.UserService;
-import com.foozup.city.dao.CityDao;
-import com.foozup.staticData.dao.StaticDataDao;
-import com.foozup.staticData.model.City;
 
 @RestController
 @RequestMapping(value="/user/")
 public class SampleRestController {
-
+/*
 	@Autowired
 	UserService userService;  //Service which will do all data retrieval/manipulation work
 
@@ -37,9 +20,9 @@ public class SampleRestController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<City> listAllUsers() {
 		List<User> users = userService.findAllUsers();
-		/*if(users.isEmpty()){
+		if(users.isEmpty()){
 			return new ResponseEntity<City>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
-		}*/
+		}
 		 
 		staticDataDaoImpl.getAllAreaLocation("1");
 		return new ResponseEntity<City>(staticDataDaoImpl.getAllAreaLocation("1"), HttpStatus.OK);
@@ -48,7 +31,7 @@ public class SampleRestController {
 
 	//-------------------Retrieve Single User--------------------------------------------------------
 	
-	/*@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> getUser(@PathVariable("id") long id) {
 		System.out.println("Fetching User with id " + id);
 		User user = userService.findById(id);
@@ -58,7 +41,7 @@ public class SampleRestController {
 		}
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-*/
+
 	
 	
 	//-------------------Create a User--------------------------------------------------------
@@ -127,5 +110,5 @@ public class SampleRestController {
 		userService.deleteAllUsers();
 		return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
 	}
-
+*/
 }

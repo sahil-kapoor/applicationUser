@@ -1,5 +1,6 @@
 package com.foozup.staticData.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,10 +36,10 @@ public class StaticDataServiceImpl implements StaticDataService {
 
 	@Override
 	public Area getAreaByLocId(Integer cityId, Integer locationId) {
-		Area area=new Area();
+	Area area=new Area();
 		Map<Integer,Area> areaMap=staticDataDaoImpl.getAllAreaLocation(cityId).getAreas();
-		
-		return null;
+		area=areaMap.entrySet().stream().filter(p->p.getValue().getLocations().entrySet().stream().filter(x->x.getKey().intValue()==locationId.intValue()).findAny().isPresent()).findAny().get().getValue();
+		return area;
 	}
 
 	@Override

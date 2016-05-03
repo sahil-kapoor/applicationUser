@@ -9,11 +9,13 @@ public interface RestaurantDao {
 
 	public List<RestaurantInfo>findRestaurantByName(String keyword);
 	
-	public List<RestaurantBase> findRestrauantByLocation(List<String> locationIds);
+	public List<RestaurantBase> findRestrauantByLocation(List<Integer> locationIds);
 	
 	public List<RestaurantBase> findRestrauantByArea(List<String> areaIds);
 	
 	public List<RestaurantBase> findRestrauantByAreaServed(List<String> areaIds);
+
+	
 	
 	
 	

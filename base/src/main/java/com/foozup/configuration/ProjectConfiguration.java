@@ -12,6 +12,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.foozup.dao.AbstractDao;
+import com.foozup.restaurant.dao.RestaurantDao;
+import com.foozup.restaurant.dao.RestaurantDaoImpl;
 import com.foozup.staticData.dao.StaticDataDao;
 import com.foozup.staticData.dao.StaticDataDaoImpl;
 
@@ -30,9 +32,16 @@ public class ProjectConfiguration extends WebMvcConfigurerAdapter {
 	}
 
 	@Bean
-	public StaticDataDao dataService() {
+	public StaticDataDao dataServiceStaticData() {
 		return new StaticDataDaoImpl(getAbstractDao());
 	}
+	
+	@Bean
+	public RestaurantDao dataServiceRestaurant(){
+		return new RestaurantDaoImpl(getAbstractDao());
+	}
+	
+	
 	
 	
 	@Override

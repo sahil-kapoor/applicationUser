@@ -15,19 +15,19 @@ import com.foozup.common.Messages;
 public class AdminServiceImpl implements AdminService {
 
 	@Autowired
-	private AdminServiceHelper adminHelper;
+	private AdminServiceHelper adminServiceHelper;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);;
 	
 	@Override
 	public UserLoginRepsonse loginService(Credentials credentials) {
 		UserLoginRepsonse userLoginResponse=new UserLoginRepsonse();
-		if(adminHelper.isLoginRequestValid(credentials)){
+		if(adminServiceHelper.isLoginRequestValid(credentials)){
 			User user=new User();
 			if(credentials.getPersist()==1){
-				user=adminHelper.validateUserId(credentials.getUserId());
+				user=adminServiceHelper.validateUserId(credentials.getUserId());
 			}else{
-				user=adminHelper.validateUserCredentials(credentials);
+				user=adminServiceHelper.validateUserCredentials(credentials);
 			}
 			if(null ==user){
 				logger.debug("userId"+credentials.getUserId()+" , login: failed" );

@@ -12,5 +12,5 @@ public interface StaticDataDao {
 	
 	public Map<String,List<Object>> getLocationDetailsByArea(String areaId);
 	
-	public City getAllAreaLocation(String cityId);
+	public City getAllAreaLocation(Integer cityId);
 }

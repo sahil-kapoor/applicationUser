@@ -41,13 +41,13 @@ public class StaticDataDaoImpl implements StaticDataDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="locationCache", key="#cityId")
-	public City getAllAreaLocation(String cityId) {
+	public City getAllAreaLocation(Integer cityId) {
 	
 		
 		
 		String cityQuery="SELECT c.id as cityId,c.name as cityName,c.lat cityLat,c.lon as cityLon FROM "+
 		"foozup_restaurant.cities c where c.id=? ";
-		City cityRow=(City)abstractDao.getJdbcTemplate().queryForObject(cityQuery, new Object[]{1},new CityRowMapper());
+		City cityRow=(City)abstractDao.getJdbcTemplate().queryForObject(cityQuery, new Object[]{cityId},new CityRowMapper());
 		cityRow.setAreas(new HashMap<>());
 		
 		Map<Integer,Area> areaMap=new HashMap<>();
@@ -67,13 +67,13 @@ public class StaticDataDaoImpl implements StaticDataDao {
 			area.setName((String)row.get("areaName"));
 			area.setLatitude((String)row.get("areaLat"));
 			area.setLongitude((String)row.get("areaLon"));
-			area.setCityId(Integer.parseInt(cityId));
+			area.setCityId((cityId));
 			area.setLocations(new HashMap<>());
 			for (Map locRow : locationRows) {
 			   	Location loc=new Location();
 			   	if(Integer.parseInt(String.valueOf(locRow.get("areaId")))==area.getId()){
 			   		loc.setAreaId(area.getId());
-			   		loc.setCityId(Integer.parseInt(cityId));
+			   		loc.setCityId(cityId);
 			   		loc.setId(Integer.parseInt(String.valueOf(locRow.get("locationId"))));
 			   		loc.setLatitude((String)locRow.get("locationLat"));
 			   		loc.setLongitude((String)locRow.get("locationLon"));

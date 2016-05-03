@@ -7,7 +7,7 @@ import com.foozup.admin.dao.AdminDao;
 import com.foozup.admin.model.Credentials;
 import com.foozup.admin.model.User;
 
-@Service("adminHelper")
+@Service("adminServiceHelper")
 public class AdminServceHelperImpl implements AdminServiceHelper{
 
 	@Autowired 

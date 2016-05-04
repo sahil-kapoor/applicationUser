@@ -7,12 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.foozup.dao.AbstractDao;
 import com.foozup.restaurant.dao.rowMapper.RestaurantMetaDataRowMapper;
 import com.foozup.restaurant.model.RestaurantBase;
 import com.foozup.restaurant.model.RestaurantInfo;
 
+@Repository("restaurantDao")
 public class RestaurantDaoImpl implements IRestaurantDao {
 
 	private AbstractDao abstractDao;

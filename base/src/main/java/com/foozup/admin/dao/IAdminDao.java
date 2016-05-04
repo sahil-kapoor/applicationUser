@@ -1,5 +1,5 @@
 package com.foozup.admin.dao;
 
-public interface AdminDao {
+public interface IAdminDao {
 
 }

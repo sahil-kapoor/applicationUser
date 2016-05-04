@@ -6,7 +6,7 @@ import java.util.Map;
 import com.foozup.staticData.model.City;
 import com.foozup.staticData.model.Location;
 
-public interface StaticDataDao {
+public interface IStaticDataDao {
 
 	public List<Object> getAreaByCity(String cityId);
 	

@@ -13,7 +13,7 @@ import com.foozup.restaurant.dao.rowMapper.RestaurantMetaDataRowMapper;
 import com.foozup.restaurant.model.RestaurantBase;
 import com.foozup.restaurant.model.RestaurantInfo;
 
-public class RestaurantDaoImpl implements RestaurantDao {
+public class RestaurantDaoImpl implements IRestaurantDao {
 
 	private AbstractDao abstractDao;
 	private static final Logger logger = LoggerFactory.getLogger(RestaurantDaoImpl.class);;

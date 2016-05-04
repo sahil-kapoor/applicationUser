@@ -5,7 +5,7 @@ import java.util.List;
 import com.foozup.restaurant.model.RestaurantBase;
 import com.foozup.restaurant.model.RestaurantInfo;
 
-public interface RestaurantDao {
+public interface IRestaurantDao {
 
 	public List<RestaurantInfo>findRestaurantByName(String keyword);
 	

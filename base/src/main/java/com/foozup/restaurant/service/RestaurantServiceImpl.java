@@ -6,7 +6,7 @@ import com.foozup.restaurant.model.request.RestauantFindRequestType;
 import com.foozup.restaurant.model.response.RestaurantMetaDataRepsoneType;
 
 @Service("restaurantService")
-public class RestaurantServiceImpl implements RestaurantService{
+public class RestaurantServiceImpl implements IRestaurantService{
 
 	@Override
 	public RestaurantMetaDataRepsoneType getRestaurantByLocation(RestauantFindRequestType request) {

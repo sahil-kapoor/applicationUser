@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.foozup.admin.model.Credentials;
 import com.foozup.admin.model.response.UserLoginRepsonse;
-import com.foozup.admin.service.AdminService;
+import com.foozup.admin.service.IAdminService;
 
 @RestController
 @RequestMapping(value="/admin/")
 public class AdminController {
 
 	@Autowired
-	AdminService adminService;
+	IAdminService adminService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	

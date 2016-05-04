@@ -19,6 +19,4 @@ public class RestauantFindRequestType {
 		this.locationIds = locationIds;
 	}
 	
-	
-	
 }

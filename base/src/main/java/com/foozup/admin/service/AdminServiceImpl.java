@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 import com.foozup.admin.model.Credentials;
 import com.foozup.admin.model.User;
 import com.foozup.admin.model.response.UserLoginRepsonse;
-import com.foozup.admin.service.helper.AdminServiceHelper;
+import com.foozup.admin.service.helper.IAdminServiceHelper;
 import com.foozup.common.Messages;
 
 @Service("adminService")
-public class AdminServiceImpl implements AdminService {
+public class AdminServiceImpl implements IAdminService {
 
 	@Autowired
-	private AdminServiceHelper adminServiceHelper;
+	private IAdminServiceHelper adminServiceHelper;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);;
 	

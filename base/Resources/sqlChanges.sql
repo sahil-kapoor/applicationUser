@@ -1,0 +1,1 @@
+create index location_index on restaurants (location_id);

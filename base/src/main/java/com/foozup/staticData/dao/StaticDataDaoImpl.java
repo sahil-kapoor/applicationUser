@@ -15,7 +15,7 @@ import com.foozup.staticData.model.City;
 import com.foozup.staticData.model.Location;
 
 
-public class StaticDataDaoImpl implements StaticDataDao {
+public class StaticDataDaoImpl implements IStaticDataDao {
 
 	
 	private AbstractDao abstractDao; 

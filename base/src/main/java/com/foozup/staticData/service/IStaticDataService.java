@@ -6,7 +6,7 @@ import com.foozup.staticData.model.Area;
 import com.foozup.staticData.model.City;
 import com.foozup.staticData.model.Location;
 
-public interface StaticDataService {
+public interface IStaticDataService {
 
 	public City getCityById(Integer cityId);
 	public Area getAreaById(Integer cityId,Integer areaId);

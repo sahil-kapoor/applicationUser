@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.foozup.admin.model.User;
-import com.foozup.restaurant.dao.RestaurantDao;
+import com.foozup.restaurant.dao.IRestaurantDao;
 import com.foozup.staticData.model.City;
 
 @RestController
@@ -21,7 +21,7 @@ public class SampleRestController {
 	
 	
 	@Autowired
-	RestaurantDao restaurantDaoImpl;
+	IRestaurantDao restaurantDaoImpl;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Void> listAllUsers() {
@@ -44,7 +44,7 @@ public class SampleRestController {
 	CityDao cityDaoImpl;
 	
 	@Autow
-	StaticDataDao staticDataDaoImpl;
+	IStaticDataDao staticDataDaoImpl;
 	//-------------------Retrieve All Users--------------------------------------------------------
 	
 	@RequestMapping(method = RequestMethod.GET)

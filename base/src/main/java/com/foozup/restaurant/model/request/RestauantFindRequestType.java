@@ -6,6 +6,7 @@ public class RestauantFindRequestType {
 
 	private String userId;
 	private List<Integer> locationIds;
+	private Integer cityId;
 	public String getUserId() {
 		return userId;
 	}
@@ -18,7 +19,11 @@ public class RestauantFindRequestType {
 	public void setLocationIds(List<Integer> locationIds) {
 		this.locationIds = locationIds;
 	}
-	
-	
+	public Integer getCityId() {
+		return cityId;
+	}
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
 	
 }

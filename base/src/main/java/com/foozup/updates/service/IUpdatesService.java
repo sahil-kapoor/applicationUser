@@ -1,5 +1,5 @@
 package com.foozup.updates.service;
 
-public interface UpdatesService {
+public interface IUpdatesService {
 
 }

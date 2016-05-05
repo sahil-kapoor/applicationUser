@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.foozup.admin.model.User;
-import com.foozup.updates.service.UpdatesService;
+import com.foozup.updates.service.IUpdatesService;
 
 
 @RestController
@@ -21,7 +21,7 @@ import com.foozup.updates.service.UpdatesService;
 public class UpdatesController {
 
 	@Autowired
-	private UpdatesService updatesService;
+	private IUpdatesService updatesService;
 		
 	@RequestMapping(value = "{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<User>> getRestaurantByName(@PathVariable("name") String name) {

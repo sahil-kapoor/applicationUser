@@ -1,22 +1,21 @@
 package com.foozup.staticData.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.foozup.staticData.dao.StaticDataDao;
+import com.foozup.staticData.dao.IStaticDataDao;
 import com.foozup.staticData.model.Area;
 import com.foozup.staticData.model.City;
 import com.foozup.staticData.model.Location;
 
 @Service("staticDataService")
-public class StaticDataServiceImpl implements StaticDataService {
+public class StaticDataServiceImpl implements IStaticDataService {
 
 	@Autowired
-	private StaticDataDao staticDataDaoImpl;
+	private IStaticDataDao staticDataDaoImpl;
 
 	@Override
 	public City getCityById(Integer cityId) {

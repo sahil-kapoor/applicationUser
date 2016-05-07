@@ -13,7 +13,7 @@ public interface IStaticDataService {
 	public Location getLocation(Integer cityId,Integer areaId,Integer locationId);
 	public Area getAreaByLocId(Integer cityId,Integer locationId);
 	public List<Area> getAreasbyCityId(Integer cityId);
-	public List<Area>  getAreabyLocIds(Integer cityId,List<Integer> locIds);
+	public List<Integer>  getAreabyLocIds(Integer cityId,List<Integer> locIds);
 	public List<Location> getLocationsByAreaId(Integer areaId);
 	public List<Location> getLocationsByAreaId(List<Integer> areaId);
 	

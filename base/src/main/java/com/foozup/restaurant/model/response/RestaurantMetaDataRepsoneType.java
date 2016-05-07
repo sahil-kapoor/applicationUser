@@ -5,16 +5,16 @@ import java.util.List;
 import com.foozup.model.BaseResponse;
 import com.foozup.restaurant.model.RestaurantBase;
 
-public class RestaurantMetaDataRepsoneType extends BaseResponse{
+public class RestaurantMetaDataRepsoneType/* extends BaseResponse*/{
 
-	private List<RestaurantBase> restaurantBasedData;
+	private List<RestaurantBase> restaurantBaseData;
 
 	public List<RestaurantBase> getRestaurantBasedData() {
-		return restaurantBasedData;
+		return restaurantBaseData;
 	}
 
 	public void setRestaurantBasedData(List<RestaurantBase> restaurantBasedData) {
-		this.restaurantBasedData = restaurantBasedData;
+		this.restaurantBaseData = restaurantBasedData;
 	}
 	
 	

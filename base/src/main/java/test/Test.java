@@ -1,10 +1,13 @@
 package test;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.foozup.restaurant.model.RestaurantBase;
 import com.foozup.staticData.model.Area;
 import com.foozup.staticData.model.Location;
 
@@ -16,6 +19,21 @@ public class Test {
 			System.out.println("It matches");
 		else
 			System.out.println("It does not match");
+		
+		
+		
+		RestaurantBase r1=new RestaurantBase();
+		r1.setId(1);
+		r1.setName("Abc");
+		RestaurantBase r2=new RestaurantBase();
+		r2.setId(1);
+		r2.setName("Abc");
+		
+		Set<RestaurantBase> s1= new HashSet<>();
+		s1.add(r1);
+		System.out.println("length 1 "+  s1.size());
+		s1.add(r2);
+		System.out.println("length 2 "+ s1.size());
 		
 		Integer locationId=5;
 		Location loc1=new Location();

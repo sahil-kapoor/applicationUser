@@ -11,10 +11,11 @@ public interface IRestaurantDao {
 	
 	public List<RestaurantBase> findRestrauantByLocation(List<Integer> locationIds);
 	
-	public List<RestaurantBase> findRestrauantByArea(List<String> areaIds);
+	public List<RestaurantBase> findRestrauantByArea(List<Integer> areaIds);
 	
-	public List<RestaurantBase> findRestrauantByAreaServed(List<String> areaIds);
+	public List<RestaurantBase> getRestaurntByAreaServed(List<Integer> areaIdList);
 
+	public List<RestaurantBase> getRestaurntByCity(Integer cityId);
 	
 	
 	

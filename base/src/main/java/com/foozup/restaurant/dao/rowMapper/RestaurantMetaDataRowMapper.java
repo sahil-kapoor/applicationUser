@@ -17,6 +17,7 @@ public class RestaurantMetaDataRowMapper implements RowMapper{
 		restBase.setAreaId(rs.getInt("areaId"));
 		restBase.setCityId(rs.getInt("cityId"));
 		restBase.setLocationId(rs.getInt("locationId"));
+		restBase.setPhoto(rs.getString("photo"));
 		restBase.setCost((int)(rs.getFloat("cost")));
 		restBase.setMinDeliveryCost((int)rs.getFloat("minDeliveryCost"));
 		return restBase;

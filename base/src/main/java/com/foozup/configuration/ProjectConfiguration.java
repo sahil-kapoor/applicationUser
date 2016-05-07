@@ -16,6 +16,8 @@ import com.foozup.restaurant.dao.IRestaurantDao;
 import com.foozup.restaurant.dao.RestaurantDaoImpl;
 import com.foozup.staticData.dao.IStaticDataDao;
 import com.foozup.staticData.dao.StaticDataDaoImpl;
+import com.foozup.update.dao.IUpdatesDao;
+import com.foozup.update.dao.UpdatesDaoImpl;
 
 @Configuration
 @EnableWebMvc
@@ -41,7 +43,10 @@ public class ProjectConfiguration extends WebMvcConfigurerAdapter {
 		return new RestaurantDaoImpl(getAbstractDao());
 	}
 	
-	
+	@Bean
+	public IUpdatesDao dataServiceUpdate(){
+		return new UpdatesDaoImpl(getAbstractDao());
+	}
 	
 	
 	@Override

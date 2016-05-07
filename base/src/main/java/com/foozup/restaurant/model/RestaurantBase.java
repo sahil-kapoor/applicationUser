@@ -2,8 +2,8 @@ package com.foozup.restaurant.model;
 
 public class RestaurantBase {
 
-	private Integer Id;
-	private String Name;
+	private Integer id;
+	private String name;
 	private String city;
 	private Integer cityId;
 	private Integer areaId;
@@ -16,16 +16,16 @@ public class RestaurantBase {
 	private String address;
 	private Integer minDeliveryCost;
 	public Integer getId() {
-		return Id;
+		return id;
 	}
 	public void setId(Integer id) {
-		Id = id;
+		this.id = id;
 	}
 	public String getName() {
-		return Name;
+		return name;
 	}
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 	public String getCity() {
 		return city;
@@ -95,6 +95,22 @@ public class RestaurantBase {
 		this.minDeliveryCost = minDeliveryCost;
 	}
 	
-	
+
+    @Override
+    public boolean equals(Object o) {
+        if ((o instanceof RestaurantBase) && (((RestaurantBase) o).getId() == this.id)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+ 
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result = result + name.length();
+        result = (int) (id * 31);
+        return result;
+    }
 	 
 }

@@ -1,7 +1,10 @@
 package com.foozup.staticData.service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +38,7 @@ public class StaticDataServiceImpl implements IStaticDataService {
 
 	@Override
 	public Area getAreaByLocId(Integer cityId, Integer locationId) {
-	Area area=new Area();
+		Area area=new Area();
 		Map<Integer,Area> areaMap=staticDataDaoImpl.getAllAreaLocation(cityId).getAreas();
 		area=areaMap.entrySet().stream().filter(p->p.getValue().getLocations().entrySet().stream().filter(x->x.getKey().intValue()==locationId.intValue()).findAny().isPresent()).findAny().get().getValue();
 		return area;
@@ -48,9 +51,17 @@ public class StaticDataServiceImpl implements IStaticDataService {
 	}
 
 	@Override
-	public List<Area> getAreabyLocIds(Integer cityId, List<Integer> locIds) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Integer> getAreabyLocIds(Integer cityId, List<Integer> locIds) {
+		Set<Integer> areaIds=new HashSet<>();
+		Map<Integer,Area> areaMap=staticDataDaoImpl.getAllAreaLocation(cityId).getAreas();
+		for(Integer locationId:locIds){
+		areaIds.add(areaMap.entrySet().stream().filter(p->p.getValue().getLocations().entrySet().stream().
+				filter(x->x.getKey().intValue()==locationId.intValue()).
+				findAny().isPresent()).findAny().get().getKey());
+		}
+		List<Integer> list = new ArrayList<Integer>(areaIds);
+		return list;
+		
 	}
 
 	@Override

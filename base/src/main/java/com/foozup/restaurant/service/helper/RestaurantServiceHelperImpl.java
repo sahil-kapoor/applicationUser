@@ -12,10 +12,27 @@ import com.foozup.restaurant.model.RestaurantBase;
 public class RestaurantServiceHelperImpl implements IRestaurantServiceHelper {
 
 	@Autowired
-	private IRestaurantDao restaurantDao;
+	private IRestaurantDao restaurantaDaoImpl;
 	@Override
 	public List<RestaurantBase> getRestaurantsByLocationId(List<Integer> locationIds){
-		return null;
+		return restaurantaDaoImpl.findRestrauantByLocation(locationIds);
+	}
+	
+	@Override
+	public List<RestaurantBase> getRestaurantsByCityId(Integer cityId) {
+		return restaurantaDaoImpl.getRestaurntByCity(cityId);
+		
+	}
+
+	@Override
+	public List<RestaurantBase> getRestaurantsByAreaId(List<Integer> areaIdList) {
+		return restaurantaDaoImpl.findRestrauantByArea(areaIdList);	
+	}
+
+	@Override
+	public List<RestaurantBase> getRestaurantByAreaServed(List<Integer> areaIdList) {
+		List<RestaurantBase> restaurantByAreaServed=restaurantaDaoImpl.getRestaurntByAreaServed(areaIdList);
+		return restaurantByAreaServed;
 	}
 	
 }

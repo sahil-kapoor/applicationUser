@@ -1,7 +1,6 @@
 package com.foozup.controller.sample;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.foozup.admin.model.User;
 import com.foozup.restaurant.dao.IRestaurantDao;
-import com.foozup.staticData.model.City;
 
 @RestController
 @RequestMapping(value="/user/")
@@ -21,17 +18,19 @@ public class SampleRestController {
 	
 	
 	@Autowired
-	IRestaurantDao restaurantDaoImpl;
+	private IRestaurantDao restaurantaDaoImpl;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Void> listAllUsers() {
 		
 		
 		ArrayList<Integer> list=new ArrayList<>();
-		list.add(1);
-		list.add(2);
+		//list.add(1);
+		list.add(6);
 		
-		restaurantDaoImpl.findRestrauantByLocation(list);
+	//	restaurantDaoImpl.findRestrauantByLocation(list);
+		restaurantaDaoImpl.getRestaurntByAreaServed(list);
+		
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	

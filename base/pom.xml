@@ -68,15 +68,15 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-context</artifactId>
-		<version>4.1.4.RELEASE</version>
-	</dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.1.4.RELEASE</version>
+		</dependency>
 
-	<!-- Support for Ehcache and others -->
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-context-support</artifactId>
+		<!-- Support for Ehcache and others -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
 			<version>${springframework.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
@@ -86,7 +86,7 @@
 					<groupId>commons-logging</groupId>
 				</exclusion>
 			</exclusions>
-	</dependency>
+		</dependency>
 		<dependency>
 			<groupId>com.jolbox</groupId>
 			<artifactId>bonecp</artifactId>
@@ -143,18 +143,24 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${springfox-swagger.version}</version>
 		</dependency>
-		
-<dependency>
-	<groupId>de.svenkubiak</groupId>
-	<artifactId>jBCrypt</artifactId>
-	<version>0.4.1</version>
-</dependency>
-	<dependency>
+
+		<dependency>
+			<groupId>de.svenkubiak</groupId>
+			<artifactId>jBCrypt</artifactId>
+			<version>0.4.1</version>
+		</dependency>
+		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
 			<version>2.9.0</version>
 		</dependency>
-	
+		<dependency>
+	<groupId>net.sf.supercsv</groupId>
+	<artifactId>super-csv</artifactId>
+	<version>2.4.0</version>
+</dependency>
+
+
 	</dependencies>
 
 

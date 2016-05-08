@@ -1,9 +1,5 @@
 package com.foozup.model;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-
 public class BaseResponse {
 	private String message;
 	private Integer code;

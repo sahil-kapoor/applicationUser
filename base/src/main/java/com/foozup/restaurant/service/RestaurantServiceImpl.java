@@ -29,7 +29,6 @@ public class RestaurantServiceImpl implements IRestaurantService{
 		if(null!=request.getLocationIds() && !request.getLocationIds().isEmpty()){
 			List<RestaurantBase> restaurantsByAreaNotLocation=new ArrayList<>();
 			List<RestaurantBase> restaurantsByLocationSelected=new ArrayList<>();
-			List<RestaurantBase> restaurantsByAreaServedForLoc=new ArrayList<>();
 			List<Integer> areaIdList=staticDataService.getAreabyLocIds(request.getCityId(), request.getLocationIds());
 			List<RestaurantBase> restaurantsByAreaId=restaurantServiceHelper.getRestaurantsByAreaId(areaIdList);
 			//Restaurant for location selected

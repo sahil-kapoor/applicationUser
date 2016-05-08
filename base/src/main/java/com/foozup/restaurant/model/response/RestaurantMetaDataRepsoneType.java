@@ -2,10 +2,9 @@ package com.foozup.restaurant.model.response;
 
 import java.util.List;
 
-import com.foozup.model.BaseResponse;
 import com.foozup.restaurant.model.RestaurantBase;
 
-public class RestaurantMetaDataRepsoneType/* extends BaseResponse*/{
+public class RestaurantMetaDataRepsoneType{
 
 	private List<RestaurantBase> restaurantBaseData;
 

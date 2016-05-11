@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,8 +29,8 @@ public class CsvTest {
 	public static void main(String[] args) {
 
 		try {
-		//	String directoryPath = "C:/Users/Home/Desktop/Foozup/UserActivity/";
-			String directoryPath="D:/Opswire/UserActivity/"	;
+			String directoryPath = "C:/Users/Home/Desktop/Foozup/UserActivity/";
+		//	String directoryPath="D:/Opswire/UserActivity/"	;
 			File myDirectory = new File(directoryPath+"activities/");
 			String[] containingFileNames = myDirectory.list();
 			List<CsvObject> csvObjectList = new ArrayList<>();
@@ -118,55 +119,296 @@ public class CsvTest {
 			uniqueActivities.forEach(activity->{
 				System.out.println(activity);
 			});
-			
 			String janFileName = directoryPath+"acitivitesByMonth/Jan_User_Activity.csv";
 			String febFileName = directoryPath+"acitivitesByMonth/Feb_User_Activity.csv";
 			String marFileName = directoryPath+"acitivitesByMonth/Mar_User_Activity.csv";
 			String aprFileName = directoryPath+"acitivitesByMonth/Apr_User_Activity.csv";
 		
-			writeCSVFile(janFileName,janList);
-			writeCSVFile(febFileName,febList);
-			writeCSVFile(marFileName,marList);
-			writeCSVFile(aprFileName,aprList);
+			writeCSVFileActivities(janFileName,janList);
+			writeCSVFileActivities(febFileName,febList);
+			writeCSVFileActivities(marFileName,marList);
+			writeCSVFileActivities(aprFileName,aprList);
+		
 			
+			
+			List<CsvObject> janActivityFilterdList=new ArrayList<>();
+			List<CsvObject> febActivityFilterdList=new ArrayList<>();
+			List<CsvObject> marActivityFilterdList=new ArrayList<>();
+			List<CsvObject> aprActivityFilterdList=new ArrayList<>();
+		
+			
+			List<String> filteredActivityList=getFilteredActivityList();
+			List<String> filteredExportActivityList=getExportActivityList();
+			HashMap<String,CsvExportObj> exportJanMap= new HashMap<>(); 
+			HashMap<String,CsvExportObj> exportFebMap= new HashMap<>(); 
+			HashMap<String,CsvExportObj> exportMarMap= new HashMap<>(); 
+			HashMap<String,CsvExportObj> exportAprMap= new HashMap<>(); 
+			
+			HashMap<String,CsvActivitiesCount> activityJanMap= new HashMap<>(); 
+			HashMap<String,CsvActivitiesCount> activityFebMap= new HashMap<>(); 
+			HashMap<String,CsvActivitiesCount> activityMarMap= new HashMap<>(); 
+			HashMap<String,CsvActivitiesCount> activityAprMap= new HashMap<>(); 
+			
+			
+			janList.forEach(action->{
+				if(filteredExportActivityList.contains(action.getActivity())){
+					janActivityFilterdList.add(action);
+					filterExportList(exportJanMap, action);
+					filterActivityList(activityJanMap, action);
+				}else 
+				if(filteredActivityList.contains(action.getActivity())){
+					janActivityFilterdList.add(action);
+					filterActivityList(activityJanMap, action);
+				}
+				
+			});
+			febList.forEach(action->{
+				if(filteredExportActivityList.contains(action.getActivity())){
+					febActivityFilterdList.add(action);
+					filterExportList(exportFebMap, action);
+					filterActivityList(activityFebMap, action);
+				}else
+				if(filteredActivityList.contains(action.getActivity())){
+					febActivityFilterdList.add(action);
+					filterActivityList(activityFebMap, action);
+				}
+			});
+			marList.forEach(action->{
+				if(filteredExportActivityList.contains(action.getActivity())){
+					marActivityFilterdList.add(action);
+					filterExportList(exportMarMap, action);
+					filterActivityList(activityMarMap, action);
+				}else
+				if(filteredActivityList.contains(action.getActivity())){
+					marActivityFilterdList.add(action);
+					filterActivityList(activityMarMap, action);
+				}
+			});
+			aprList.forEach(action->{
+				if(filteredExportActivityList.contains(action.getActivity())){
+					aprActivityFilterdList.add(action);
+					filterExportList(exportAprMap, action);
+					filterActivityList(activityAprMap, action);
+				}else
+				if(filteredActivityList.contains(action.getActivity())){
+					aprActivityFilterdList.add(action);
+					filterActivityList(activityAprMap, action);
+				}
+			});
+			
+		
+				
+				String janfilteredActivityFileName = directoryPath+"acitivitesByMonth/Jan_User_Activity_Filtered.csv";
+					String febfilteredActivityFileName = directoryPath+"acitivitesByMonth/Feb_User_Activity_Filtered.csv";
+					String marfilteredActivityFileName = directoryPath+"acitivitesByMonth/Mar_User_Activity_Filtered.csv";
+					String aprfilteredActivityFileName = directoryPath+"acitivitesByMonth/Apr_User_Activity_Filtered.csv";
+					String janfilteredActivityExportFileName = directoryPath+"acitivitesByMonth/Jan_User_Activity_Filtered_Export.csv";
+					String febfilteredActivityExportFileName = directoryPath+"acitivitesByMonth/Feb_User_Activity_Filtered_Export.csv";
+					String marfilteredActivityExportFileName = directoryPath+"acitivitesByMonth/Mar_User_Activity_Filtered_Export.csv";
+					String aprfilteredActivityExportFileName = directoryPath+"acitivitesByMonth/Apr_User_Activity_Filtered_Export.csv";
+				
+					String janfilteredActivityCountFileName = directoryPath+"acitivitesByMonth/Jan_User_Activity_Filtered_Count.csv";
+					String febfilteredActivityCountFileName = directoryPath+"acitivitesByMonth/Feb_User_Activity_Filtered_Count.csv";
+					String marfilteredActivityCountFileName = directoryPath+"acitivitesByMonth/Mar_User_Activity_Filtered_Count.csv";
+					String aprfilteredActivityCountFileName = directoryPath+"acitivitesByMonth/Apr_User_Activity_Filtered_Count.csv";
+				
+					
+					writeCSVFileActivities(janfilteredActivityFileName,janActivityFilterdList);
+					writeCSVFileActivities(febfilteredActivityFileName,febActivityFilterdList);
+					writeCSVFileActivities(marfilteredActivityFileName,marActivityFilterdList);
+					writeCSVFileActivities(aprfilteredActivityFileName,aprActivityFilterdList);
+					
+					writeCSVFileExport(janfilteredActivityExportFileName,exportJanMap);
+					writeCSVFileExport(febfilteredActivityExportFileName,exportFebMap);
+					writeCSVFileExport(marfilteredActivityExportFileName,exportMarMap);
+					writeCSVFileExport(aprfilteredActivityExportFileName,exportAprMap);
+					
+					writeCSVFileActivitiesCount(janfilteredActivityCountFileName,activityJanMap);
+					writeCSVFileActivitiesCount(febfilteredActivityCountFileName,activityFebMap);
+					writeCSVFileActivitiesCount(marfilteredActivityCountFileName,activityMarMap);
+					writeCSVFileActivitiesCount(aprfilteredActivityCountFileName,activityAprMap);
+					
+					
+					
 		} catch (Exception e) {
 			System.err.println("CSV file cannot be read : " + e);
 		}
 	}
+
+	private static void filterExportList(HashMap<String, CsvExportObj> exportJanMap, CsvObject action) {
+		if(exportJanMap.containsKey(action.getParticipant())){
+			System.out.println("count before " + action.getParticipant() +" : "+ 
+					exportJanMap.get(action.getParticipant()).getExportCount());
+			exportJanMap.get(action.getParticipant()).
+			setExportCount(exportJanMap.get(action.getParticipant()).
+					getExportCount()+1);
+			System.out.println("count after " + action.getParticipant() +" : "+ 
+					exportJanMap.get(action.getParticipant()).getExportCount());
+		}else{
+			CsvExportObj obj=new CsvExportObj();
+			obj.setParticipant(action.getParticipant());
+			obj.setExportCount(1);
+			exportJanMap.put(action.getParticipant(),obj);
+		}
+	}
 	
-	public static void writeCSVFile(String csvFileName, List<CsvObject> list) {
-	    ICsvBeanWriter beanWriter = null;
-	    CellProcessor[] processors = new CellProcessor[] {
-	    		new FmtDate("MMM/dd/yyyy"), // ISBN
-	            new NotNull(), // title
-	            new NotNull(), // author
-	            new NotNull(), // publisher
-	            new NotNull(), // title
-	            
-	    };
-	 
-	    try {
-	    	
-	        beanWriter = new CsvBeanWriter(new FileWriter(csvFileName),
-	                CsvPreference.STANDARD_PREFERENCE);
-	        String[] header = {"dt", "userId", "username", "participant", "activity"};
-	        beanWriter.writeHeader(header);
-	 
-	        for (CsvObject csvObj : list) {
-	            beanWriter.write(csvObj, header, processors);
-	        }
-	 
-	    } catch (IOException ex) {
-	        System.err.println("Error writing the CSV file: " + ex);
-	    } finally {
-	        if (beanWriter != null) {
-	            try {
-	                beanWriter.close();
-	            } catch (IOException ex) {
-	                System.err.println("Error closing the writer: " + ex);
-	            }
-	        }
-	    }
+	private static void filterActivityList(HashMap<String, CsvActivitiesCount> exportJanMap, CsvObject action) {
+		if(exportJanMap.containsKey(action.getParticipant())){
+			System.out.println("count before " + action.getParticipant() +" : "+ 
+					exportJanMap.get(action.getParticipant()).getTotalActivities());
+			exportJanMap.get(action.getParticipant()).
+			setTotalActivities(exportJanMap.get(action.getParticipant()).
+					getTotalActivities()+1);
+			System.out.println("count after " + action.getParticipant() +" : "+ 
+					exportJanMap.get(action.getParticipant()).getTotalActivities());
+		}else{
+			CsvActivitiesCount obj=new CsvActivitiesCount();
+			obj.setParticipant(action.getParticipant());
+			obj.setTotalActivities(1);
+			exportJanMap.put(action.getParticipant(),obj);
+		}
+	}
+	
+
+	public static void writeCSVFileActivities(String csvFileName, List<CsvObject> list) {
+		ICsvBeanWriter beanWriter = null;
+		CellProcessor[] processors = new CellProcessor[] { new FmtDate("MMM/dd/yyyy"),
+				new NotNull(),new NotNull(), new NotNull(),
+				new NotNull()
+
+		};
+
+		try {
+
+			beanWriter = new CsvBeanWriter(new FileWriter(csvFileName), CsvPreference.STANDARD_PREFERENCE);
+			String[] header = { "dt", "userId", "username", "participant", "activity" };
+			beanWriter.writeHeader(header);
+
+			for (CsvObject csvObj : list) {
+				beanWriter.write(csvObj, header, processors);
+			}
+
+		} catch (IOException ex) {
+			System.err.println("Error writing the CSV file: " + ex);
+		} finally {
+			if (beanWriter != null) {
+				try {
+					beanWriter.close();
+				} catch (IOException ex) {
+					System.err.println("Error closing the writer: " + ex);
+				}
+			}
+		}
+	}
+
+	public static void writeCSVFileExport(String csvFileName, Map<String,CsvExportObj> map) {
+		ICsvBeanWriter beanWriter = null;
+		CellProcessor[] processors = new CellProcessor[] { 
+				new NotNull(), 
+				new NotNull(),
+		};
+
+		try {
+			beanWriter = new CsvBeanWriter(new FileWriter(csvFileName), CsvPreference.STANDARD_PREFERENCE);
+			String[] header = { "Participant", "ExportCount" };
+			beanWriter.writeHeader(header);
+			
+					for (Map.Entry<String, CsvExportObj> entry : map.entrySet())
+					{
+						beanWriter.write(entry.getValue(), header, processors);
+					}
+
+		} catch (IOException ex) {
+			System.err.println("Error writing the CSV file: " + ex);
+		} finally {
+			if (beanWriter != null) {
+				try {
+					beanWriter.close();
+				} catch (IOException ex) {
+					System.err.println("Error closing the writer: " + ex);
+				}
+			}
+		}
+	}
+
+	public static void writeCSVFileActivitiesCount(String csvFileName, Map<String,CsvActivitiesCount> map) {
+		ICsvBeanWriter beanWriter = null;
+		CellProcessor[] processors = new CellProcessor[] { 
+				new NotNull(), 
+				new NotNull(),
+		};
+
+		try {
+			beanWriter = new CsvBeanWriter(new FileWriter(csvFileName), CsvPreference.STANDARD_PREFERENCE);
+			String[] header = { "Participant", "TotalActivities" };
+			beanWriter.writeHeader(header);
+			
+					for (Map.Entry<String, CsvActivitiesCount> entry : map.entrySet())
+					{
+						beanWriter.write(entry.getValue(), header, processors);
+					}
+
+		} catch (IOException ex) {
+			System.err.println("Error writing the CSV file: " + ex);
+		} finally {
+			if (beanWriter != null) {
+				try {
+					beanWriter.close();
+				} catch (IOException ex) {
+					System.err.println("Error closing the writer: " + ex);
+				}
+			}
+		}
+	}
+
+	
+	public List<CsvObject> filterOutActiviies(List<CsvObject> list) {
+		List<CsvObject> filteredList = new ArrayList<>();
+
+		return filteredList;
+	}
+
+	public static List<String> getFilteredActivityList() {
+		List<String> filteredActivity = new ArrayList<>(Arrays.asList("Clone User", "Unassign Product(s) from User(s)",
+				"Clone User Books", "Get Legal Entity Pairs for Trading Permission", "Download Book List Report(xls)",
+				"Download Book Report(csv)", "Assign Book(s) to User(s)", "Assign LegalEntity(s) to User(s)",
+				"Assign Interest Group(s) to User", "Deactivate Participant Book(s)",
+				"Modify Participant Interest Group", "Download Book Report(xls)", "Get Legal Entity Pairs for MCA",
+				"Download Sub Group Report(xls)", "Unassign Book(s) from User(s)", "Download Book List Report(csv)",
+				"Update User Profile", "Download Trading Permission Report(csv)",
+				"Assign Users to Participant Interest Group", "Reset User Password",
+				"Download Participant Overlay Report(xls)", "Download Legal Entity Report(csv)",
+				"Download Interest Group Report(csv)", "Download Participant Overlay Report(csv)",
+				"Create Participant Book(s)", "Download User Report(xls)",
+				"Unassign Users from Participant Interest Group", "Get MasterDocumentType Records",
+				"Activate Participant User(s)", "Download Interest Group Report(xls)",
+				"Create Participant Interest Group", "Clone Participant Book", "Download Product Report(xls)",
+				"Change Password", "Add Comments on a Trading Permission LE Pair", "Create Participant Product List(s)",
+				"Assign Product List(s) to User(s)", "Deactivate Participant Interest Group",
+				"Assign User(s) to Subgroup(s)", "Assign Book(s) to Book List", "Unassign Product List(s) from User(s)",
+				"Download Legal Entity Report(xls)", "Activate Participant Book(s)", "Download MCA Report(xls)",
+				"Create Participant Book List(s)", "Assign Book List(s) to User(s)", "Download User Report(csv)",
+				"Unassign Book List(s) from User(s)", "Assign Product(s) to User(s)",
+				"Trading Permission Bulk Action Request", "Assign Product(s) to Product List",
+				"Unassign Book(s) from Book List", "Clone User Products", "Download Trading Permission Report(xls)",
+				"Download Sub Group Report(csv)", "Deactivate Participant User(s)", "User Subscription Change",
+				"Unassign LegalEntity(s) from User(s)", "Unassign Interest Group(s) from User"));
+		return filteredActivity;
+	}
+
+	public static List<String> getExportActivityList() {
+		List<String> filteredActivity = new ArrayList<>(Arrays.asList("Download Book List Report(xls)",
+				"Download Book Report(csv)","Download Book Report(xls)", 
+				"Download Sub Group Report(xls)", "Download Book List Report(csv)",
+				"Download Trading Permission Report(csv)","Download Participant Overlay Report(xls)", "Download Legal Entity Report(csv)",
+				"Download Interest Group Report(csv)", "Download Participant Overlay Report(csv)",
+				 "Download User Report(xls)","Download Interest Group Report(xls)",	"Download Product Report(xls)",
+				"Download Legal Entity Report(xls)", "Download MCA Report(xls)","Download User Report(csv)",
+				//"Get MasterDocumentType Records","Get Legal Entity Pairs for MCA","Get Legal Entity Pairs for Trading Permission",
+				"Download Trading Permission Report(xls)","Download Sub Group Report(csv)"
+				));
+		//"Get MasterDocumentType Records","Get Legal Entity Pairs for MCA","Get Legal Entity Pairs for Trading Permission", 
+		return filteredActivity;
 	}
 
 }
@@ -177,9 +419,3 @@ public class CsvTest {
  * System.out.println("file no. : "+(i+1)+" file name: "+containingFileNames[i]+
  * " line no: "+lineNumber); }
  */
-
-
-
-
-
-

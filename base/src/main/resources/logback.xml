@@ -13,7 +13,7 @@
 	<!-- Send debug messages to a file at "c:/jcg.log" -->
 	<appender name="FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>d:/sahil/baseProject.log</file>
+		<file>c:/sahil/baseProject.log</file>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} -
 				%msg%n</Pattern>

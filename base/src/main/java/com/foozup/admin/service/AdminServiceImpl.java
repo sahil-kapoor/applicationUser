@@ -33,12 +33,12 @@ public class AdminServiceImpl implements IAdminService {
 				logger.debug("userId"+credentials.getUserId()+" , login: failed" );
 			}else{
 				userLoginResponse.setName(user.getName());
-				userLoginResponse.setCode(1);
+				userLoginResponse.setSuccess(true);
 				userLoginResponse.setMessage(Messages.SUCCESS);
 				userLoginResponse.setUserId(user.getId());
 			}
 		}else{
-			userLoginResponse.setCode(0);
+			userLoginResponse.setSuccess(false);
 			userLoginResponse.setMessage(Messages.LOGIN_INAVLID_CREDENTIALS);
 			logger.debug("userId"+credentials.getUserId()+" , login: failed" );
 		}

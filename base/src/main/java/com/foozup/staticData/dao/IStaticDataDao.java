@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.foozup.staticData.model.City;
-import com.foozup.staticData.model.Location;
+import com.foozup.staticData.model.Tag;
 
 public interface IStaticDataDao {
 
@@ -13,4 +13,6 @@ public interface IStaticDataDao {
 	public Map<String,List<Object>> getLocationDetailsByArea(String areaId);
 	
 	public City getAllAreaLocation(Integer cityId);
+	
+	public List<Tag> getAllTags();
 }

@@ -14,6 +14,8 @@ public class RestaurantBase {
 	private Integer cost;
 	private String phoneNo;
 	private String address;
+	private boolean isFranchisee;
+	//private Integer franchiseeId;
 	private Integer minDeliveryCost;
 	public Integer getId() {
 		return id;
@@ -94,9 +96,19 @@ public class RestaurantBase {
 	public void setMinDeliveryCost(Integer minDeliveryCost) {
 		this.minDeliveryCost = minDeliveryCost;
 	}
-	
-
-    @Override
+	/*public Integer getFranchiseeId() {
+		return franchiseeId;
+	}
+	public void setFranchiseeId(Integer franchiseeId) {
+		this.franchiseeId = franchiseeId;
+	}*/
+	public boolean isFranchisee() {
+		return isFranchisee;
+	}
+	public void setFranchisee(boolean isFranchisee) {
+		this.isFranchisee = isFranchisee;
+	}
+	@Override
     public boolean equals(Object o) {
         if ((o instanceof RestaurantBase) && (((RestaurantBase) o).getId() == this.id)) {
             return true;

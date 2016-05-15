@@ -2,7 +2,7 @@ package com.foozup.model;
 
 public class BaseResponse {
 	private String message;
-	private Integer code;
+	private boolean success;
 	private Object data;
 	
 	private String apiVersion;
@@ -13,11 +13,12 @@ public class BaseResponse {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public Integer getCode() {
-		return code;
+	
+	public boolean isSuccess() {
+		return success;
 	}
-	public void setCode(Integer code) {
-		this.code = code;
+	public void setSuccess(boolean success) {
+		this.success = success;
 	}
 	public Object getData() {
 		return data;

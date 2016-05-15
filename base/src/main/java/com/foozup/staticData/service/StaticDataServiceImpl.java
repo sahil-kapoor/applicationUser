@@ -1,6 +1,7 @@
 package com.foozup.staticData.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import com.foozup.staticData.dao.IStaticDataDao;
 import com.foozup.staticData.model.Area;
 import com.foozup.staticData.model.City;
 import com.foozup.staticData.model.Location;
+import com.foozup.staticData.model.Tag;
 
 @Service("staticDataService")
 public class StaticDataServiceImpl implements IStaticDataService {
@@ -75,7 +77,20 @@ public class StaticDataServiceImpl implements IStaticDataService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+
+	@Override
+	public Map<Integer, String> getTags(List<Tag> tags) {
+		Map<Integer, String> tagMap=new HashMap<>();
+		staticDataDaoImpl.getAllTags().forEach(x->{
+			tagMap.put(x.getTagId(),x.getTagName());
+		});
+		return tagMap;
+	}
+
+	@Override
+	public List<Tag> getTags() {
+		staticDataDaoImpl.getAllTags();
+		return null;
+	}
 	
 }

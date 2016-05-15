@@ -16,7 +16,7 @@ public class BaseController {
 	protected Environment env;
 
 	public Object initializeResponse(BaseResponse response){
-		response.setCode(response.getData() !=null ? 1 : 0);
+		response.setSuccess(response.getData() !=null ? true : false);
 		response.setApiVersion(env.getProperty("apiVersion"));
 		return response;
 		

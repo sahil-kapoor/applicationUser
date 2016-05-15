@@ -1,5 +1,6 @@
 package com.foozup.staticData.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import com.foozup.staticData.dao.rowMapper.CityRowMapper;
 import com.foozup.staticData.model.Area;
 import com.foozup.staticData.model.City;
 import com.foozup.staticData.model.Location;
+import com.foozup.staticData.model.Tag;
 
 
 public class StaticDataDaoImpl implements IStaticDataDao {
@@ -87,6 +89,24 @@ public class StaticDataDaoImpl implements IStaticDataDao {
 
 		
 		return cityRow;
+	}
+
+
+	@Override
+	@Cacheable(value="locationCache", key="tags")
+	public List<Tag> getAllTags() {
+
+		List<Tag> tagList=new ArrayList<>();
+		String query="SELECT t.id as id,t.name as name FROM "+
+				"foozup_restaurant.tags t "; 
+        List<Map<String,Object>> tagRows = abstractDao.getJdbcTemplate().queryForList(query);
+        for(Map<String,Object> row : tagRows){
+            Tag tag = new Tag();
+            tag.setTagId(Integer.parseInt(String.valueOf(row.get("id"))));
+            tag.setTagName(String.valueOf(row.get("name")));
+            tagList.add(tag);
+        }
+		return tagList;
 	}
 
 	

@@ -39,14 +39,16 @@ public class RestaurantController extends BaseController{
 	public ResponseEntity<BaseResponse> getRestaurantByName(@RequestBody RestauantFindRequestType request) {
 		StopWatch stopWatch = new StopWatch();
 		stopWatch.start();
-		RestaurantMetaDataRepsoneType restResponse;
-		Map<String,List<RestaurantBase>> foprmattedRestData=restaurantService.formatRestaruantData(restaurantService.getRestaurantByLocation(request));
-		restResponse=updateService.getUpdatesByRestaurant(RestauantFindRequestType request); 
+		RestaurantMetaDataRepsoneType restResponse=new RestaurantMetaDataRepsoneType();
+		Map<String,List<RestaurantBase>> foprmattedRestData=restaurantService.
+				formatRestaruantData(restaurantService.getRestaurantByLocation(request));
+		restaurantService.collateRestaurantData(foprmattedRestData,restResponse);
+		//HashMap<String,List<UpdateBase>> updateType=updateService.getUpdatesByRestaurant(foprmattedRestData); 
 		BaseResponse response=new BaseResponse();
 		response.setData(restResponse);
 		response.setMessage("");
 		stopWatch.stop();
-		logger.info("Service {} , Time Taken : {}s","/restaurant/",stopWatch.getTotalTimeSeconds());
+		logger.info("Service {} , Time Taken : {}ms","/restaurant/",stopWatch.getTotalTimeMillis());
 		return new ResponseEntity<BaseResponse>((BaseResponse) initializeResponse(response), HttpStatus.OK);
 	}
 }

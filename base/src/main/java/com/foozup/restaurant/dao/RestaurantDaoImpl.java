@@ -1,5 +1,6 @@
 package com.foozup.restaurant.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,10 +95,17 @@ public class RestaurantDaoImpl implements IRestaurantDao {
 	@Override
 	public List<RestaurantBase> getRestaurntByCity(Integer cityId) {
 		List<RestaurantBase> restBaseList = new ArrayList<>();
+		
 		String restQuery = "SELECT r.id as restId, r.name as name, r.city_id as cityId,r.area_id as areaId,"
 				+ "r.location_id as locationId,r.address as address,r.min_delivery_cost as minDeliveryCost,r.photo as photo,  r.cost_for_2 as cost "
 				+ ", r.is_franchisee as isFranchisee FROM foozup_restaurant.restaurants r where r.city_id=? and r.status=1;";
-		restBaseList=abstractDao.getJdbcTemplate().query(restQuery,new Object[] { cityId },new RestaurantMetaDataRowMapper());
+		try{
+			restBaseList=abstractDao.getJdbcTemplate().query(restQuery,new Object[] { cityId },new RestaurantMetaDataRowMapper());
+				
+		}catch(Exception ex){
+			logger.error("Error in  getRestaurntByCity :" +ex.getMessage());
+			
+		}
 		// TODO Auto-generated method stub
 		return restBaseList;
 	}

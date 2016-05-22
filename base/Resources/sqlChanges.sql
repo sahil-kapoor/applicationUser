@@ -26,6 +26,3 @@ ADD CONSTRAINT `tag_f_key`
   ON DELETE CASCADE
   ON UPDATE NO ACTION;
 
-
-  
-  

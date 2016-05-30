@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -29,8 +30,8 @@ public class CsvTest {
 	public static void main(String[] args) {
 
 		try {
-			String directoryPath = "C:/Users/Home/Desktop/Foozup/UserActivity/";
-		//	String directoryPath="D:/Opswire/UserActivity/"	;
+		//	String directoryPath = "C:/Users/Home/Desktop/Foozup/UserActivity/";
+			String directoryPath="D:/Opswire/UserActivity/"	;
 			File myDirectory = new File(directoryPath+"activities/");
 			String[] containingFileNames = myDirectory.list();
 			List<CsvObject> csvObjectList = new ArrayList<>();
@@ -272,18 +273,24 @@ public class CsvTest {
 
 	public static void writeCSVFileActivities(String csvFileName, List<CsvObject> list) {
 		ICsvBeanWriter beanWriter = null;
-		CellProcessor[] processors = new CellProcessor[] { new FmtDate("MMM/dd/yyyy"),
+		CellProcessor[] processors = new CellProcessor[] { new FmtDate("MMM/dd/yyyy HH:mm:ss"),
 				new NotNull(),new NotNull(), new NotNull(),
 				new NotNull()
-
 		};
 
+		/*Comparator<CsvObject> byPartName = (a1, a2) -> a1.getParticipant().compareTo(a2.getParticipant());
+	    Comparator<CsvObject> byDate =(a1, a2) -> a1.getDt().compareTo(a2.getDt());
+		list.stream().sorted(byPartName.thenComparing(byDate));
+		*/
+		Comparator<CsvObject> groupByComparator = Comparator.comparing(CsvObject::getParticipant)
+                .thenComparing(CsvObject::getDt);
+		list.sort(groupByComparator);
+		//list.parallelStream().sorted(groupByComparator);
 		try {
 
 			beanWriter = new CsvBeanWriter(new FileWriter(csvFileName), CsvPreference.STANDARD_PREFERENCE);
 			String[] header = { "dt", "userId", "username", "participant", "activity" };
 			beanWriter.writeHeader(header);
-
 			for (CsvObject csvObj : list) {
 				beanWriter.write(csvObj, header, processors);
 			}
@@ -373,7 +380,7 @@ public class CsvTest {
 				"Clone User Books", "Get Legal Entity Pairs for Trading Permission", "Download Book List Report(xls)",
 				"Download Book Report(csv)", "Assign Book(s) to User(s)", "Assign LegalEntity(s) to User(s)",
 				"Assign Interest Group(s) to User", "Deactivate Participant Book(s)",
-				"Modify Participant Interest Group", "Download Book Report(xls)", "Get Legal Entity Pairs for MCA",
+				"Modify Participant Interest Group", "Download Book Report(xls)", //"Get Legal Entity Pairs for MCA",
 				"Download Sub Group Report(xls)", "Unassign Book(s) from User(s)", "Download Book List Report(csv)",
 				"Update User Profile", "Download Trading Permission Report(csv)",
 				"Assign Users to Participant Interest Group", "Reset User Password",
@@ -383,7 +390,7 @@ public class CsvTest {
 				"Unassign Users from Participant Interest Group", "Get MasterDocumentType Records",
 				"Activate Participant User(s)", "Download Interest Group Report(xls)",
 				"Create Participant Interest Group", "Clone Participant Book", "Download Product Report(xls)",
-				"Change Password", "Add Comments on a Trading Permission LE Pair", "Create Participant Product List(s)",
+				"Change Password", "Create Participant Product List(s)",// "Add Comments on a Trading Permission LE Pair"
 				"Assign Product List(s) to User(s)", "Deactivate Participant Interest Group",
 				"Assign User(s) to Subgroup(s)", "Assign Book(s) to Book List", "Unassign Product List(s) from User(s)",
 				"Download Legal Entity Report(xls)", "Activate Participant Book(s)", "Download MCA Report(xls)",

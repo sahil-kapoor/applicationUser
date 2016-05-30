@@ -21,7 +21,9 @@ public class UpdateServiceHelperImpl implements IUpdateServiceHelper {
 	public void getUpdatesByRestaurant(Map<String, Map<Integer, List<UpdateBase>>> updateByRestCategory,
 			List<RestaurantBase> restaurants) {
 		
-		// TODO Auto-generated method stub
+		//List<>
+		
+		
 		
 	}
 

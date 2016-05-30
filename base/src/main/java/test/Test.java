@@ -67,7 +67,8 @@ public class Test {
 		areaMap.put(3, area3);
 		Area area=new Area();
 		
-		area=areaMap.entrySet().stream().filter(p->p.getValue().getLocations().entrySet().stream().filter(x->x.getKey().intValue()==locationId.intValue()).findAny().isPresent()).findAny().get().getValue();
+		area=areaMap.entrySet().stream().filter(p->p.getValue().getLocations().entrySet().stream().
+				filter(x->x.getKey().intValue()==locationId.intValue()).findAny().isPresent()).findAny().get().getValue();
 		System.out.println(area.getId());
 		
 		

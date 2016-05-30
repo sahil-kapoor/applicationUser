@@ -1,5 +1,6 @@
 package com.foozup.restaurant.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import com.foozup.restaurant.model.RestaurantBase;
 import com.foozup.restaurant.model.request.RestauantFindRequestType;
 import com.foozup.restaurant.model.response.RestaurantMetaDataRepsoneType;
 import com.foozup.restaurant.service.IRestaurantService;
+import com.foozup.updates.model.UpdateBase;
 import com.foozup.updates.service.IUpdatesService;
 
 @RestController
@@ -43,7 +45,7 @@ public class RestaurantController extends BaseController{
 		Map<String,List<RestaurantBase>> foprmattedRestData=restaurantService.
 				formatRestaruantData(restaurantService.getRestaurantByLocation(request));
 		restaurantService.collateRestaurantData(foprmattedRestData,restResponse);
-		//HashMap<String,List<UpdateBase>> updateType=updateService.getUpdatesByRestaurant(foprmattedRestData); 
+		HashMap<String,List<UpdateBase>> updateType=updateService.getUpdatesByRestaurant(foprmattedRestData); 
 		BaseResponse response=new BaseResponse();
 		response.setData(restResponse);
 		response.setMessage("");

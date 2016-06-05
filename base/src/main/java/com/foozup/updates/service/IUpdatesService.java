@@ -11,6 +11,6 @@ import com.foozup.updates.model.UpdateBase;
 public interface IUpdatesService {
 	
 	public HashMap<String,List<UpdateBase>> getUpdatesByRestaurant(Map<String,List<RestaurantBase>> foprmattedRestData); 
-	public RestaurantMetaDataRepsoneType collateRestaurantData(Map<String,List<UpdateBase>> updateBaseListByType);
-
+	public RestaurantMetaDataRepsoneType collateUpdateData(Map<String,List<UpdateBase>> updateBaseListByType);
+	
 }

@@ -27,14 +27,14 @@ public class UpdatesServiceImpl implements IUpdatesService{
 			updateByRestCategory.put(k, updateByRestaurant);
 			updateServiceHelper.getUpdatesByRestaurant(updateByRestCategory,v);	
 		});
-		updateServiceHelper.formatCollateUpdateData(updateByRestCategory,formattedRestData);
+		
 		
 		return null;
 		
 	}
 
 	@Override
-	public RestaurantMetaDataRepsoneType collateRestaurantData(Map<String, List<UpdateBase>> updateBaseListByType) {
+	public RestaurantMetaDataRepsoneType collateUpdateData(Map<String, List<UpdateBase>> updateBaseListByType) {
 		// TODO Auto-generated method stub
 		return null;
 	}

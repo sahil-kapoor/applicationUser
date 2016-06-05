@@ -11,7 +11,7 @@ public interface IUpdateServiceHelper {
 	public void getUpdatesByRestaurant(Map<String, Map<Integer, List<UpdateBase>>> updateByRestCategory,
 			List<RestaurantBase> restaurants);
 
-	public List<UpdateBase> formatCollateUpdateData(Map<String, Map<Integer, List<UpdateBase>>> updateByRestCategory,
+	public List<UpdateBase> collateUpdateData(Map<String, Map<Integer, List<UpdateBase>>> updateByRestCategory,
 			Map<String, List<RestaurantBase>> formattedRestData);
 
 }

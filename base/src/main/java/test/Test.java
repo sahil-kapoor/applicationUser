@@ -1,21 +1,13 @@
 package test;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-import org.mindrot.jbcrypt.BCrypt;
-
-import com.foozup.restaurant.model.RestaurantBase;
-import com.foozup.staticData.model.Area;
-import com.foozup.staticData.model.Location;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Test {
 
 	
 	public static void main(String args[]){
-		if (BCrypt.checkpw("passfbpass", "$2a$10$TYqJjMMDl6dlMPGMFrxE9efgJnJ1Cj.LaTlviebP8aMzyol122V12"))
+/*		if (BCrypt.checkpw("passfbpass", "$2a$10$TYqJjMMDl6dlMPGMFrxE9efgJnJ1Cj.LaTlviebP8aMzyol122V12"))
 			System.out.println("It matches");
 		else
 			System.out.println("It does not match");
@@ -71,6 +63,16 @@ public class Test {
 				filter(x->x.getKey().intValue()==locationId.intValue()).findAny().isPresent()).findAny().get().getValue();
 		System.out.println(area.getId());
 		
+		*/
+		
+		
+		LocalDateTime now= LocalDateTime.now();
+		System.out.println(now);
+		  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+		  String text = now.format(formatter);
+		  System.out.println(text);
+	//	DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-mm-dd");
+		//System.out.println(now.format(formatter));
 		
 	}
 }

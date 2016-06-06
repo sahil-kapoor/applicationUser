@@ -1,5 +1,6 @@
 package com.foozup.updates.service.helper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.foozup.restaurant.model.RestaurantBase;
 import com.foozup.update.dao.IUpdatesDao;
 import com.foozup.updates.model.UpdateBase;
+import com.foozup.updates.model.dto.UpdateFranchiseDto;
+import com.foozup.updates.model.dto.UpdateRestDto;
 
 @Service("updateServiceHelper")
 public class UpdateServiceHelperImpl implements IUpdateServiceHelper {
@@ -30,11 +33,13 @@ public class UpdateServiceHelperImpl implements IUpdateServiceHelper {
 		    });
 		});*/
 		restaurants.forEach(rest->{
-		
+			List<UpdateBase> updateList=new ArrayList<>();
 			//Get update if it is franchise
-			
+			if(rest.isFranchisee()){
+				updateList.addAll(transformFranchiseDtoTOBase(updatesDaoImpl.getRestAsFrachiseUpdate(rest.getId()),rest));	
+			}
 			//Get update from normal restaurant update
-			
+			  updateList.addAll(transformRestDtoTOBase(updatesDaoImpl.getRestUpdate(rest.getId()),rest));
 			// Collate data
 			
 			// Filter data - primary, today only, franchise
@@ -56,5 +61,15 @@ public class UpdateServiceHelperImpl implements IUpdateServiceHelper {
 			Map<String, List<RestaurantBase>> formattedRestData) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public List<UpdateBase> transformFranchiseDtoTOBase(List<UpdateFranchiseDto> franchiseDto,RestaurantBase rest){
+		List<UpdateBase> updateBaseList=new ArrayList<>();
+		return updateBaseList;
+	}
+	
+	public List<UpdateBase> transformRestDtoTOBase(List<UpdateRestDto> updateRestDto,RestaurantBase rest){
+		List<UpdateBase> updateBaseList=new ArrayList<>();
+		return updateBaseList;
 	}
 }

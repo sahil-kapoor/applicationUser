@@ -25,6 +25,18 @@ public class UpdateBase {
 	private Time endTime;
 	private Time startTime;
 	private Date endDate;
+	public Date getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
 	private Date startDate;
 	
 	private int totalCount;

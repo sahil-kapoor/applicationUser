@@ -5,10 +5,9 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.foozup.restaurant.model.RestaurantBase;
-import com.foozup.updates.model.UpdateBase;
-import com.foozup.updates.model.dao.UpdateFranchiseDto;
+import com.foozup.updates.model.dto.UpdateFranchiseDto;
 
+@SuppressWarnings("rawtypes")
 public class UpdateBaseFranchiseRowMapper implements RowMapper{
 	
 	public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -16,7 +15,8 @@ public class UpdateBaseFranchiseRowMapper implements RowMapper{
 		dto.setId(rs.getInt("update_id"));
 		dto.setRestaurntId(rs.getInt("rest_id"));
 		dto.setFranchisee(true);
-		dto.setActiveDays(rs.getString("days"));
+		dto.setFranchiseeId(rs.getInt("franchisee_id"));
+		dto.setActiveDays(rs.getString("active_days"));
 		dto.setAllTime(rs.getInt("all_time")==0 ?false:true);
 		if(dto.isAllTime()){
 			dto.setEndTime(rs.getTime("rest_end_time"));

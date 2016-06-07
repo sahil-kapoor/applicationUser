@@ -2,11 +2,18 @@ package test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.util.Locale;
+
+import com.foozup.common.Days;
 
 public class Test {
 
 	
 	public static void main(String args[]){
+		
+		System.out.println(Days.forValue(1));
+		System.out.println(Days.forValue(Integer.parseInt("1")).name());
 /*		if (BCrypt.checkpw("passfbpass", "$2a$10$TYqJjMMDl6dlMPGMFrxE9efgJnJ1Cj.LaTlviebP8aMzyol122V12"))
 			System.out.println("It matches");
 		else
@@ -71,6 +78,8 @@ public class Test {
 		  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 		  String text = now.format(formatter);
 		  System.out.println(text);
+		  System.out.println(now.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.US));
+		  
 	//	DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-mm-dd");
 		//System.out.println(now.format(formatter));
 		

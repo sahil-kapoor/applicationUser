@@ -7,7 +7,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.foozup.common.Utils;
 import com.foozup.restaurant.model.RestaurantBase;
+import com.foozup.update.common.UpdateUtils;
 import com.foozup.update.dao.IUpdatesDao;
 import com.foozup.updates.model.UpdateBase;
 import com.foozup.updates.model.dto.UpdateFranchiseDto;
@@ -41,8 +43,10 @@ public class UpdateServiceHelperImpl implements IUpdateServiceHelper {
 			//Get update from normal restaurant update
 			  updateList.addAll(transformRestDtoTOBase(updatesDaoImpl.getRestUpdate(rest.getId()),rest));
 			// Collate data
+			updateList.forEach(update->{
 			
-			// Filter data - primary, today only, franchise
+			});
+			// Filter data - primary and today only, primary, today only, franchise
 			
 			//Enrich data
 			
@@ -65,11 +69,66 @@ public class UpdateServiceHelperImpl implements IUpdateServiceHelper {
 	
 	public List<UpdateBase> transformFranchiseDtoTOBase(List<UpdateFranchiseDto> franchiseDto,RestaurantBase rest){
 		List<UpdateBase> updateBaseList=new ArrayList<>();
+		franchiseDto.forEach(franchiseUpdate->{
+			UpdateBase update=new UpdateBase();
+			update.setArea(rest.getArea());
+			update.setAreaId(rest.getAreaId());
+			update.setCity(rest.getCity());
+			update.setCost(rest.getCost());
+			update.setActiveDays(Utils.convertIntDaytoString(franchiseUpdate.getActiveDays()));
+			update.setEndDate(franchiseUpdate.getEndDate());
+			update.setEndTime(franchiseUpdate.getEndTime());
+			update.setFranchisee(franchiseUpdate.isFranchisee());
+			update.setFranchiseeId(franchiseUpdate.getFranchiseeId());
+			update.setId(franchiseUpdate.getId());
+			update.setLocation(rest.getLocation());
+			update.setLocationId(rest.getLocationId());
+			update.setMinDeliveryCost(rest.getMinDeliveryCost());
+			update.setPhoto(rest.getPhoto());
+			update.setRestaurntId(rest.getId());
+			update.setPrimary(false);
+			update.setRestaurntName(rest.getName());
+			update.setStartDate(franchiseUpdate.getStartDate());
+			update.setStartTime(franchiseUpdate.getStartTime());
+			update.setTodayOnly(UpdateUtils.isTodayOnly(update.getActiveDays()));
+			update.setTotalCount(0);
+			update.setUpdateText(franchiseUpdate.getUpdateText());
+			updateBaseList.add(update);
+		});
 		return updateBaseList;
 	}
 	
 	public List<UpdateBase> transformRestDtoTOBase(List<UpdateRestDto> updateRestDto,RestaurantBase rest){
 		List<UpdateBase> updateBaseList=new ArrayList<>();
+		updateRestDto.forEach(restUpdate->{
+			UpdateBase update=new UpdateBase();
+			update.setArea(rest.getArea());
+			update.setAreaId(rest.getAreaId());
+			update.setCity(rest.getCity());
+			update.setCost(rest.getCost());
+			update.setActiveDays(Utils.convertIntDaytoString(restUpdate.getActiveDays()));
+			update.setEndDate(restUpdate.getEndDate());
+			update.setEndTime(restUpdate.getEndTime());
+			update.setFranchisee(false);
+			update.setFranchiseeId(0);
+			update.setId(restUpdate.getId());
+			update.setLocation(rest.getLocation());
+			update.setLocationId(rest.getLocationId());
+			update.setMinDeliveryCost(rest.getMinDeliveryCost());
+			update.setPhoto(rest.getPhoto());
+			update.setRestaurntId(rest.getId());
+			update.setPrimary(restUpdate.isPrimary());
+			update.setRestaurntName(rest.getName());
+			update.setStartDate(restUpdate.getStartDate());
+			update.setStartTime(restUpdate.getStartTime());
+			update.setTodayOnly(UpdateUtils.isTodayOnly(update.getActiveDays()));
+			update.setTotalCount(0);
+			update.setUpdateText(restUpdate.getUpdateText());
+			updateBaseList.add(update);
+		});
 		return updateBaseList;
 	}
+	
+	
+	
 }

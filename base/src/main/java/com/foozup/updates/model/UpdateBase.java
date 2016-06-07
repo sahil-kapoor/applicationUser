@@ -2,6 +2,7 @@ package com.foozup.updates.model;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 public class UpdateBase {
 
@@ -25,6 +26,7 @@ public class UpdateBase {
 	private Time endTime;
 	private Time startTime;
 	private Date endDate;
+	private List<String> activeDays;
 	public Date getEndDate() {
 		return endDate;
 	}
@@ -40,7 +42,7 @@ public class UpdateBase {
 	private Date startDate;
 	
 	private int totalCount;
-	private String days;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -161,12 +163,13 @@ public class UpdateBase {
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 	}
-	public String getDays() {
-		return days;
+	public List<String> getActiveDays() {
+		return activeDays;
 	}
-	public void setDays(String days) {
-		this.days = days;
+	public void setActiveDays(List<String> days) {
+		this.activeDays = days;
 	}
+
 	
 	
 }

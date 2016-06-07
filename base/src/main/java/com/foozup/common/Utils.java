@@ -3,6 +3,8 @@ package com.foozup.common;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Utils {
 
@@ -27,5 +29,14 @@ public final class Utils {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 		return now.format(formatter);
 		
+	}
+
+	public static List<String> convertIntDaytoString(String dayString){
+		List<String> days=new ArrayList<>();
+		String[] dayInNumber=dayString.split(",");
+	    for(int i=0;i<dayInNumber.length;i++){
+	    	days.add(Days.forValue(Integer.parseInt(dayInNumber[i])).name());
+	    }
+	    return days;
 	}
 }

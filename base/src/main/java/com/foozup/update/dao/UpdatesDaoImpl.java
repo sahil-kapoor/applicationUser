@@ -33,9 +33,9 @@ public class UpdatesDaoImpl implements IUpdatesDao {
 			parameters.addValue("restId", restId);
 			parameters.addValue("startDate", Utils.getTodayStartDateTime());
 			parameters.addValue("endDate", Utils.getTodayEndDateTime());
-			parameters.addValue("restEndTime", Utils.getcurrentTime());
-			parameters.addValue("restEndTime2", Utils.getcurrentTime());
-			parameters.addValue("franchiseEndTime", Utils.getcurrentTime());
+			parameters.addValue("restEndTime", Utils.getCurrentTimeAsString());
+			parameters.addValue("restEndTime2", Utils.getCurrentTimeAsString());
+			parameters.addValue("franchiseEndTime", Utils.getCurrentTimeAsString());
 
 			String query = "select franchisee_updates.id as update_id,restaurants.id as rest_id, case when restaurants.end_time_2 is null OR restaurants.end_time_2 ='' then  restaurants.end_time "
 					+ "else restaurants.end_time_2 end as rest_end_time,franchisee_updates.end_time as update_end_time,"
@@ -67,9 +67,9 @@ public class UpdatesDaoImpl implements IUpdatesDao {
 			parameters.addValue("restId", restId);
 			parameters.addValue("startDate", Utils.getTodayStartDateTime());
 			parameters.addValue("endDate", Utils.getTodayEndDateTime());
-			parameters.addValue("restEndTime", Utils.getcurrentTime());
-			parameters.addValue("restEndTime2", Utils.getcurrentTime());
-			parameters.addValue("updateEndTime", Utils.getcurrentTime());
+			parameters.addValue("restEndTime", Utils.getCurrentTimeAsString());
+			parameters.addValue("restEndTime2", Utils.getCurrentTimeAsString());
+			parameters.addValue("updateEndTime", Utils.getCurrentTimeAsString());
 
 			String query = "select  restaurant_updates.id as update_id,restaurants.id as rest_id, (Select group_concat(days separator ', ') "
 					+ "from restaurant_updates_days where restaurant_updates_days.update_id = restaurant_updates.id group by restaurant_updates_days.update_id) "

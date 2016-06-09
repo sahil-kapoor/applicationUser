@@ -1,5 +1,7 @@
 package com.foozup.restaurant.model;
 
+import java.time.LocalTime;
+
 public class RestaurantBase {
 
 	private Integer id;
@@ -17,6 +19,11 @@ public class RestaurantBase {
 	private boolean isFranchisee;
 	//private Integer franchiseeId;
 	private Integer minDeliveryCost;
+	private LocalTime startTimeFirst;
+	private LocalTime endTimeFirst;
+	private LocalTime startTimeSecond;
+	private LocalTime endTimeSecond;
+	private boolean isOpen; 
 	public Integer getId() {
 		return id;
 	}
@@ -107,6 +114,39 @@ public class RestaurantBase {
 	}
 	public void setFranchisee(boolean isFranchisee) {
 		this.isFranchisee = isFranchisee;
+	}
+	
+	
+	public LocalTime getStartTimeFirst() {
+		return startTimeFirst;
+	}
+	public void setStartTimeFirst(LocalTime startTimeFirst) {
+		this.startTimeFirst = startTimeFirst;
+	}
+	public LocalTime getEndTimeFirst() {
+		return endTimeFirst;
+	}
+	public void setEndTimeFirst(LocalTime endTimeFirst) {
+		this.endTimeFirst = endTimeFirst;
+	}
+	public LocalTime getStartTimeSecond() {
+		return startTimeSecond;
+	}
+	public void setStartTimeSecond(LocalTime startTimeSecond) {
+		this.startTimeSecond = startTimeSecond;
+	}
+	
+	public LocalTime getEndTimeSecond() {
+		return endTimeSecond;
+	}
+	public void setEndTimeSecond(LocalTime endTimeSecond) {
+		this.endTimeSecond = endTimeSecond;
+	}
+	public boolean isOpen() {
+		return isOpen;
+	}
+	public void setOpen(boolean isOpen) {
+		this.isOpen = isOpen;
 	}
 	@Override
     public boolean equals(Object o) {

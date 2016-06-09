@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
+import com.foozup.common.Utils;
 import com.foozup.restaurant.model.RestaurantBase;
 
 @SuppressWarnings("rawtypes")
@@ -21,6 +22,12 @@ public class RestaurantMetaDataRowMapper implements RowMapper{
 		restBase.setCost((int)(rs.getFloat("cost")));
 		restBase.setFranchisee(rs.getInt("isFranchisee") == 0?false:true );
 		restBase.setMinDeliveryCost((int)rs.getFloat("minDeliveryCost"));
+		restBase.setStartTimeFirst(Utils.parseStringInHrsfromHour(rs.getString("start_time_first")));
+		restBase.setEndTimeFirst(Utils.parseStringInHrsfromHour(rs.getString("end_time_first")));
+		restBase.setStartTimeSecond(Utils.parseStringInHrsfromHour(rs.getString("start_time_second")));
+		restBase.setEndTimeSecond(Utils.parseStringInHrsfromHour(rs.getString("end_time_second")));
+		restBase.setOpen(((Utils.isCurrentTimeInBetween(restBase.getStartTimeFirst(),restBase.getEndTimeFirst())==true) || 
+				(Utils.isCurrentTimeInBetween(restBase.getStartTimeSecond(), restBase.getEndTimeSecond())==true)) ? true :false);
 		return restBase;
 	}
 }	

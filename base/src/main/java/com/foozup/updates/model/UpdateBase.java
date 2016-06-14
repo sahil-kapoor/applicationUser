@@ -27,6 +27,10 @@ public class UpdateBase {
 	private Time startTime;
 	private Date endDate;
 	private List<String> activeDays;
+	private boolean isRestaurantOpen;
+	private Date startDate;
+	private int totalOthers;
+	
 	public Date getEndDate() {
 		return endDate;
 	}
@@ -39,9 +43,6 @@ public class UpdateBase {
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	private Date startDate;
-	
-	private int totalCount;
 	
 	public Integer getId() {
 		return id;
@@ -157,17 +158,23 @@ public class UpdateBase {
 	public void setStartTime(Time startTime) {
 		this.startTime = startTime;
 	}
-	public int getTotalCount() {
-		return totalCount;
-	}
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
-	}
 	public List<String> getActiveDays() {
 		return activeDays;
 	}
 	public void setActiveDays(List<String> days) {
 		this.activeDays = days;
+	}
+	public boolean isRestaurantOpen() {
+		return isRestaurantOpen;
+	}
+	public void setRestaurantOpen(boolean isRestaurantOpen) {
+		this.isRestaurantOpen = isRestaurantOpen;
+	}
+	public int getTotalOthers() {
+		return totalOthers;
+	}
+	public void setTotalOthers(int totalOthers) {
+		this.totalOthers = totalOthers;
 	}
 
 	

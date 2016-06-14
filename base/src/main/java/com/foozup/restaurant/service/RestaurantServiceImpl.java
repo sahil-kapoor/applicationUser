@@ -12,7 +12,6 @@ import org.springframework.util.StringUtils;
 
 import com.foozup.common.Constants;
 import com.foozup.restaurant.model.RestaurantBase;
-import com.foozup.restaurant.model.request.RestauantFindRequestType;
 import com.foozup.restaurant.model.response.RestaurantMetaDataRepsoneType;
 import com.foozup.restaurant.service.helper.IRestaurantServiceHelper;
 import com.foozup.staticData.service.IStaticDataService;
@@ -27,18 +26,18 @@ public class RestaurantServiceImpl implements IRestaurantService {
 	private IStaticDataService staticDataService;
 
 	@Override
-	public Map<String, List<RestaurantBase>> getRestaurantByLocation(RestauantFindRequestType request) {
+	public Map<String, List<RestaurantBase>> getRestaurantByLocation(Integer cityId,List<Integer> locationIds) {
 		Map<String, List<RestaurantBase>> restaurantMetaDataByType = new HashMap<>();
 
 		// If location is specified
-		if (null != request.getLocationIds() && !request.getLocationIds().isEmpty()) {
+		if (null != locationIds && !locationIds.isEmpty()) {
 			List<RestaurantBase> restaurantsByAreaNotLocation = new ArrayList<>();
 			List<RestaurantBase> restaurantsByLocationSelected = new ArrayList<>();
-			List<Integer> areaIdList = staticDataService.getAreabyLocIds(request.getCityId(), request.getLocationIds());
+			List<Integer> areaIdList = staticDataService.getAreabyLocIds(cityId, locationIds);
 			List<RestaurantBase> restaurantsByAreaId = restaurantServiceHelper.getRestaurantsByAreaId(areaIdList);
 			// Restaurant for location selected
 			restaurantsByAreaId.forEach(restaurant -> {
-				if (request.getLocationIds().contains(restaurant.getLocationId())) {
+				if (locationIds.contains(restaurant.getLocationId())) {
 					restaurantsByLocationSelected.add(restaurant);
 				}
 			});
@@ -62,7 +61,7 @@ public class RestaurantServiceImpl implements IRestaurantService {
 		} // If location is not specified, fetch results by city
 		else {
 			List<RestaurantBase> restaurantsByCityId = restaurantServiceHelper
-					.getRestaurantsByCityId(request.getCityId());
+					.getRestaurantsByCityId(cityId);
 			Collections.shuffle(restaurantsByCityId);
 			restaurantMetaDataByType.put(Constants.RESTAURANT_BY_NO_LOCATION_SELECTED, restaurantsByCityId);
 		}

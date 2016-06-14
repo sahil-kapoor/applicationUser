@@ -26,7 +26,7 @@ public class RestaurantMetaDataRowMapper implements RowMapper{
 		restBase.setEndTimeFirst(Utils.parseStringInHrsfromHour(rs.getString("end_time_first")));
 		restBase.setStartTimeSecond(Utils.parseStringInHrsfromHour(rs.getString("start_time_second")));
 		restBase.setEndTimeSecond(Utils.parseStringInHrsfromHour(rs.getString("end_time_second")));
-		restBase.setOpen(((Utils.isCurrentTimeInBetween(restBase.getStartTimeFirst(),restBase.getEndTimeFirst())==true) || 
+		restBase.setRestaurantOpen(((Utils.isCurrentTimeInBetween(restBase.getStartTimeFirst(),restBase.getEndTimeFirst())==true) || 
 				(Utils.isCurrentTimeInBetween(restBase.getStartTimeSecond(), restBase.getEndTimeSecond())==true)) ? true :false);
 		return restBase;
 	}

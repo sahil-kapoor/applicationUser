@@ -23,7 +23,7 @@ public class RestaurantBase {
 	private LocalTime endTimeFirst;
 	private LocalTime startTimeSecond;
 	private LocalTime endTimeSecond;
-	private boolean isOpen; 
+	private boolean isRestaurantOpen; 
 	public Integer getId() {
 		return id;
 	}
@@ -142,11 +142,11 @@ public class RestaurantBase {
 	public void setEndTimeSecond(LocalTime endTimeSecond) {
 		this.endTimeSecond = endTimeSecond;
 	}
-	public boolean isOpen() {
-		return isOpen;
+	public boolean isRestaurantOpen() {
+		return isRestaurantOpen;
 	}
-	public void setOpen(boolean isOpen) {
-		this.isOpen = isOpen;
+	public void setRestaurantOpen(boolean isRestaurantOpen) {
+		this.isRestaurantOpen = isRestaurantOpen;
 	}
 	@Override
     public boolean equals(Object o) {

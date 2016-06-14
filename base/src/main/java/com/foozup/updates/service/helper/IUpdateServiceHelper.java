@@ -8,10 +8,10 @@ import com.foozup.updates.model.UpdateBase;
 
 public interface IUpdateServiceHelper {
 
-	public void getUpdatesByRestaurant(Map<String, Map<Integer, List<UpdateBase>>> updateByRestCategory,
-			List<RestaurantBase> restaurants);
+	public Map<Integer,List<UpdateBase>> getUpdatesByRestaurant(List<RestaurantBase> restaurants,int limit);
 
 	public List<UpdateBase> collateUpdateData(Map<String, Map<Integer, List<UpdateBase>>> updateByRestCategory,
 			Map<String, List<RestaurantBase>> formattedRestData);
+
 
 }

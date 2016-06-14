@@ -11,7 +11,7 @@ public interface IRestaurantService {
 
 	// public RestaurantMetaDataRepsoneType
 	// getRestaurantByLocation(RestauantFindRequestType request);
-	public Map<String, List<RestaurantBase>> getRestaurantByLocation(RestauantFindRequestType request);
+	public Map<String, List<RestaurantBase>> getRestaurantByLocation(Integer cityId,List<Integer> locationId);
 
 	public Map<String, List<RestaurantBase>> formatRestaruantData(Map<String, List<RestaurantBase>> restaurantData);
 

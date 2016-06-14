@@ -1,6 +1,5 @@
 package com.foozup.restaurant.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,9 +42,10 @@ public class RestaurantController extends BaseController{
 		stopWatch.start();
 		RestaurantMetaDataRepsoneType restResponse=new RestaurantMetaDataRepsoneType();
 		Map<String,List<RestaurantBase>> foprmattedRestData=restaurantService.
-				formatRestaruantData(restaurantService.getRestaurantByLocation(request));
+				formatRestaruantData(restaurantService.getRestaurantByLocation(request.getCityId(),request.getLocationIds()));
 		restaurantService.collateRestaurantData(foprmattedRestData,restResponse);
-		HashMap<String,List<UpdateBase>> updateType=updateService.getUpdatesByRestaurant(foprmattedRestData); 
+		Map<String,List<UpdateBase>> updateType=updateService.getUpdatesByRestaurant(foprmattedRestData ,2);
+		updateService.collateUpdateData(updateType, restResponse);
 		BaseResponse response=new BaseResponse();
 		response.setData(restResponse);
 		response.setMessage("");
@@ -53,4 +53,6 @@ public class RestaurantController extends BaseController{
 		logger.info("Service {} , Time Taken : {}ms","/restaurant/",stopWatch.getTotalTimeMillis());
 		return new ResponseEntity<BaseResponse>((BaseResponse) initializeResponse(response), HttpStatus.OK);
 	}
+	
+	
 }

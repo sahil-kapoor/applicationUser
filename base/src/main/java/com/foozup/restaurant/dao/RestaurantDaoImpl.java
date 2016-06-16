@@ -81,7 +81,7 @@ public class RestaurantDaoImpl implements IRestaurantDao {
 
 			String restQuery = "SELECT r.id as restId, r.name as name, r.city_id as cityId,r.area_id as areaId,"+
 						"  r.location_id as locationId,r.address as address,r.min_delivery_cost as minDeliveryCost, r.photo as photo ,r.cost_for_2 as cost "+
-					", r.is_franchisee as isFranchisee,,r.start_time as start_time_first,r.end_time as end_time_first,"
+					", r.is_franchisee as isFranchisee,r.start_time as start_time_first,r.end_time as end_time_first,"
 					+ "r.start_time_2 as start_time_second,r.end_time_2 as end_time_second FROM foozup_restaurant.restaurants r,restaurant_areas_served rs where r.id=rs.restaurant_id and r.status=1 and "+
 						" rs.area_id IN (:ids) and r.area_id not in (:ids)" ;
 			NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(
@@ -100,8 +100,8 @@ public class RestaurantDaoImpl implements IRestaurantDao {
 		
 		String restQuery = "SELECT r.id as restId, r.name as name, r.city_id as cityId,r.area_id as areaId,"
 				+ "r.location_id as locationId,r.address as address,r.min_delivery_cost as minDeliveryCost,r.photo as photo,  r.cost_for_2 as cost "
-				+ ", r.is_franchisee,r.start_time as start_time_first,r.end_time as end_time_first,r.start_time_2 as start_time_second,"
-				+ "r.end_time_2 as end_time_second as isFranchisee FROM foozup_restaurant.restaurants r where r.city_id=? and r.status=1;";
+				+ ", r.is_franchisee as isFranchisee,r.start_time as start_time_first,r.end_time as end_time_first,r.start_time_2 as start_time_second,"
+				+ "r.end_time_2 as end_time_second  FROM foozup_restaurant.restaurants r where r.city_id=? and r.status=1;";
 		try{
 			restBaseList=abstractDao.getJdbcTemplate().query(restQuery,new Object[] { cityId },new RestaurantMetaDataRowMapper());
 				

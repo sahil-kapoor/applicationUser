@@ -23,7 +23,7 @@ public class UpdateBaseRestRowMapper implements RowMapper{
 			dto.setStartTime(rs.getTime("update_start_time"));
 		}
 		dto.setPrimary(rs.getInt("is_primary")==0?false : true);
-		dto.setUpdateText(rs.getString("update"));
+		dto.setUpdateText(rs.getString("update_text"));
 		dto.setStartDate(rs.getDate("update_start_date"));
 		dto.setEndDate(rs.getDate("update_end_date"));
 		return dto;
